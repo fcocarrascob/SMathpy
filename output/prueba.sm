@@ -3,7 +3,7 @@
 <regions xmlns="http://smath.info/schemas/worksheet/1.0">
   <settings dpi="96">
     <identity>
-      <id>39272d4d-c6a9-43d5-988e-beb78c81c1a5</id>
+      <id>aa3d14b9-c742-4df5-a872-a024089a97a1</id>
       <revision>1</revision>
     </identity>
     <metadata lang="eng">
@@ -53,7 +53,7 @@
   <region id="3" left="9" top="90" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
-        <e type="operand">q</e>
+        <e type="operand">q_i</e>
         <e type="operand">4</e>
         <e type="operand" style="unit">kN</e>
         <e type="operand" style="unit">m</e>
@@ -71,12 +71,10 @@
   <region id="5" left="9" top="144" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
-        <e type="operand">R.A</e>
-        <e type="operand">q</e>
-        <e type="operand">L</e>
+        <e type="operand">x_0</e>
+        <e type="operand">0</e>
+        <e type="operand" style="unit">m</e>
         <e type="operator" args="2">*</e>
-        <e type="operand">2</e>
-        <e type="operator" args="2">/</e>
         <e type="operator" args="2">:</e>
       </input>
     </math>
@@ -84,41 +82,100 @@
   <region id="6" left="9" top="171" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
-        <e type="operand">M.max</e>
-        <e type="operand">q</e>
-        <e type="operand">L</e>
-        <e type="operand">2</e>
-        <e type="operator" args="2">^</e>
+        <e type="operand">x_1</e>
+        <e type="operand">1</e>
+        <e type="operand" style="unit">m</e>
         <e type="operator" args="2">*</e>
-        <e type="operand">8</e>
-        <e type="operator" args="2">/</e>
         <e type="operator" args="2">:</e>
       </input>
     </math>
   </region>
-  <region id="7" left="9" top="198" color="#000000" bgColor="#dddddd" border="true">
-    <text lang="eng">
-      <p>Results:</p>
-    </text>
+  <region id="7" left="9" top="198" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">x_2</e>
+        <e type="operand">4</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
   </region>
   <region id="8" left="9" top="225" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
-        <e type="operand">R.A</e>
+        <e type="operand">x_3</e>
+        <e type="operand">9</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
       </input>
-      <contract>
-        <e type="operand" style="unit">kN</e>
-      </contract>
     </math>
   </region>
   <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
-        <e type="operand">M.max</e>
+        <e type="operand">x_4</e>
+        <e type="operand">16</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
       </input>
-      <contract>
-        <e type="operand" style="unit">kN</e>
-      </contract>
+    </math>
+  </region>
+  <region id="10" left="9" top="279" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">x_5</e>
+        <e type="operand">25</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="11" left="9" top="306" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">x_6</e>
+        <e type="operand">36</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="12" left="9" top="333" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">x_7</e>
+        <e type="operand">49</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="13" left="9" top="360" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">x_8</e>
+        <e type="operand">64</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="14" left="9" top="387" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">x_9</e>
+        <e type="operand">81</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
     </math>
   </region>
 </regions>
