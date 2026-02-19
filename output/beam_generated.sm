@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?application progid="SMath Studio Desktop" version="0.98.6606.22069"?>
+<regions xmlns="http://smath.info/schemas/worksheet/1.0">
+  <settings dpi="96">
+    <identity>
+      <id>3065787d-612d-474d-a9f4-713e58c8ff05</id>
+      <revision>1</revision>
+    </identity>
+    <metadata lang="eng">
+      <title>Simple Beam Calculation</title>
+      <author>smathpy</author>
+    </metadata>
+    <calculation>
+      <precision>4</precision>
+      <exponentialThreshold>5</exponentialThreshold>
+      <fractions>decimal</fractions>
+    </calculation>
+    <pageModel active="false" printAreas="true" simpleEqualsOnly="false" printBackgroundImages="true">
+      <paper id="9" orientation="Portrait" width="827" height="1169" />
+      <margins left="39" right="39" top="39" bottom="39" />
+      <header alignment="Center" color="#a9a9a9">&amp;[DATE] &amp;[TIME] - &amp;[FILENAME]</header>
+      <footer alignment="Center" color="#a9a9a9">&amp;[PAGENUM] / &amp;[COUNT]</footer>
+      <backgrounds />
+    </pageModel>
+    <dependencies>
+      <assembly name="SMath Studio Desktop" version="0.98.6606.22069" guid="a37cba83-b69c-4c71-9992-55ff666763bd" />
+      <assembly name="Math Region" version="0.98.6606.22069" guid="02f1ab51-215b-466e-a74d-5d8b1cf85e8d" />
+      <assembly name="Text Region" version="1.10.6606.22071" guid="485d28c5-349a-48b6-93be-12a35a1c1e39" />
+      <assembly name="Special Functions" version="1.11.6606.22071" guid="2814e667-4e12-48b1-8d51-194e480eabc5" />
+    </dependencies>
+  </settings>
+  <region id="0" left="9" top="9" color="#0000ff" bgColor="#ffffff" fontSize="12">
+    <text lang="eng">
+      <p bold="true">Simple Beam Calculation</p>
+    </text>
+  </region>
+  <region id="1" left="9" top="36" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>Input data:</p>
+    </text>
+  </region>
+  <region id="2" left="9" top="63" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">L</e>
+        <e type="operand">3</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="3" left="9" top="90" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">q</e>
+        <e type="operand">4</e>
+        <e type="operand" style="unit">kN</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="4" left="9" top="117" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>Calculations:</p>
+    </text>
+  </region>
+  <region id="5" left="9" top="144" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">R.A</e>
+        <e type="operand">q</e>
+        <e type="operand">L</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="6" left="9" top="171" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">M.max</e>
+        <e type="operand">q</e>
+        <e type="operand">L</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">^</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">8</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="7" left="9" top="198" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>Results:</p>
+    </text>
+  </region>
+  <region id="8" left="9" top="225" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">R.A</e>
+      </input>
+      <contract>
+        <e type="operand" style="unit">kN</e>
+      </contract>
+    </math>
+  </region>
+  <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">M.max</e>
+      </input>
+      <contract>
+        <e type="operand" style="unit">kN</e>
+      </contract>
+    </math>
+  </region>
+</regions>
