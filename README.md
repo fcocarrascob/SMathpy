@@ -54,7 +54,7 @@ a = assign("h", (var("b") - var("a")) / var("n"))
 
 ```python
 from smathpy import MathRegion
-from smathpy.units import with_unit, value_with_compound_unit
+from smathpy.units import with_unit, value_with_compound_unit, compound_unit, power_unit
 
 # Simple unit: L := 3 * m
 MathRegion.assignment("L", 3, unit_name="m")
@@ -62,6 +62,12 @@ MathRegion.assignment("L", 3, unit_name="m")
 # Compound unit: q := 4 * kN/m
 from smathpy import assign
 assign("q", value_with_compound_unit(4, ["kN"], ["m"]))
+
+# Unit as contract_expr (display result in specific unit)
+MathRegion(expr=assign("A_s", ...), show_result=True, contract_expr=compound_unit(["mm", "mm"], []))
+
+# Unit raised to a power (more semantic alternative for mm²)
+MathRegion(expr=assign("A_s", ...), show_result=True, contract_expr=power_unit("mm", 2))
 ```
 
 ### Matrices
@@ -128,6 +134,17 @@ TextRegion.section("Input data:")  # Bordered, gray background
 TextRegion(texts={"eng": "Hello", "rus": "Привет"})  # Multilingual
 ```
 
+### Worksheet Spacing
+
+`ws.add_spacing(pixels)` inserts extra vertical space between regions (useful between calculation blocks):
+
+```python
+ws.add(MathRegion(expr=assign("a", ...)))
+ws.add_spacing(10)   # add 10 px gap
+ws.add(MathRegion(expr=assign("b", ...)))
+ws.add_spacing(40)   # larger visual break before next section
+```
+
 ## Examples
 
 See the `examples/` directory:
@@ -135,6 +152,7 @@ See the `examples/` directory:
 - `generate_gcd.py` — Euclidean GCD algorithm (while/if/line)
 - `generate_beam.py` — Engineering beam with units
 - `generate_simpson.py` — Simpson's rule numerical integration
+- `viga_ha_aci318.py` — Reinforced concrete beam design (ACI 318-19), full engineering worksheet
 
 Run any example:
 

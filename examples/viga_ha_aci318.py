@@ -5,9 +5,7 @@ from smathpy.expression import sum_, func_assign, call, mat
 from smathpy.expression.functions import sqrt
 from smathpy.units import with_unit, value_with_compound_unit, compound_unit
 # ── Control structures ─────────────────────────────────────────────────────
-from smathpy.expression import (
-    line, range_, for_range, for_loop, while_loop, if_, sum_, product_,
-)
+from smathpy.expression import line, range_, for_range
 
 def main():
     ws = Worksheet(title="Viga de Hormigón Armado ACI318-19", author="FCB")

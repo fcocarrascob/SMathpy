@@ -25,7 +25,7 @@ smathpy/
 │   ├── picture_region.py
 │   └── area_region.py # AreaRegion: collapsible container for child regions
 └── units/
-    └── __init__.py    # with_unit(), compound_unit(), value_with_compound_unit(), unit constants
+    └── __init__.py    # with_unit(), compound_unit(), value_with_compound_unit(), power_unit(), unit constants
 ```
 
 ### Key Concept: RPN Expression Model
@@ -43,6 +43,8 @@ Elements have a `type` (`"operand"`, `"operator"`, `"function"`, `"bracket"`), a
 
 `Worksheet.add(region)` → auto-layout (assigns `top` position) → `to_xml()` assigns sequential IDs → `_build_region()` serializes each region type → `save()` writes XML with SMath processing instructions.
 
+`Worksheet.add_spacing(pixels)` inserts extra vertical gap between regions by bumping `_next_top` without adding a region. Use it to create visual separation between calculation blocks.
+
 ## Conventions
 
 - **Dataclasses everywhere**: `Region`, `MathRegion`, `TextRegion`, `Settings`, `Element` are all `@dataclass`.
@@ -50,6 +52,7 @@ Elements have a `type` (`"operand"`, `"operator"`, `"function"`, `"bracket"`), a
 - **Trailing underscores** for Python keyword clashes: `abs_`, `if_`, `sum_`, `round_`, `max_`, `min_`, `eval_`, `product_`.
 - **`_coerce()` pattern**: Internal helper in `builder.py` converts `int`/`float`/`str` to `Expr` — all public APIs accept `Union[Expr, int, float, str]`.
 - **Units via `@` operator**: `num(5) @ "m"` attaches a unit using `__matmul__`.
+- **`power_unit(unit, exp)`**: builds a unit-raised-to-power expression (e.g. `power_unit('mm', 2)` for mm²) — preferred over `compound_unit(['mm','mm'], [])` for readability when used as `contract_expr`.
 - **Comparison operators return `Expr`**, not `bool`. Use `.eq()` and `.neq()` for equality (can't safely override `__eq__`/`__ne__`).
 
 ## Development Workflow
