@@ -3,12 +3,12 @@
 <regions xmlns="http://smath.info/schemas/worksheet/1.0">
   <settings dpi="96">
     <identity>
-      <id>cb5bc377-e9d5-4de0-ab74-fd98634db3b0</id>
+      <id>423a2113-e4da-41e6-83ab-22c75a8b3747</id>
       <revision>1</revision>
     </identity>
     <metadata lang="eng">
       <title>Viga de Hormigón Armado ACI318-19</title>
-      <author>smathpy</author>
+      <author>FCB</author>
     </metadata>
     <calculation>
       <precision>4</precision>
@@ -81,26 +81,12 @@
       </input>
     </math>
   </region>
-  <region id="5" left="9" top="144" color="#000000" bgColor="#ffffff">
-    <math optimize="2">
-      <description active="true" position="Right" lang="eng">
-        <p>Luz libre de la viga</p>
-      </description>
-      <input>
-        <e type="operand">L</e>
-        <e type="operand">6</e>
-        <e type="operand" style="unit">m</e>
-        <e type="operator" args="2">*</e>
-        <e type="operator" args="2">:</e>
-      </input>
-    </math>
-  </region>
-  <region id="6" left="9" top="171" color="#000000" bgColor="#dddddd" border="true">
+  <region id="5" left="9" top="144" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>2. Propiedades de los materiales</p>
     </text>
   </region>
-  <region id="7" left="9" top="198" color="#000000" bgColor="#ffffff">
+  <region id="6" left="9" top="171" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Resistencia a compresión del hormigón</p>
@@ -114,7 +100,7 @@
       </input>
     </math>
   </region>
-  <region id="8" left="9" top="225" color="#000000" bgColor="#ffffff">
+  <region id="7" left="9" top="198" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Fluencia del acero longitudinal</p>
@@ -128,7 +114,7 @@
       </input>
     </math>
   </region>
-  <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
+  <region id="8" left="9" top="225" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Fluencia del acero transversal</p>
@@ -142,7 +128,7 @@
       </input>
     </math>
   </region>
-  <region id="10" left="9" top="279" color="#000000" bgColor="#ffffff">
+  <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Módulo de elasticidad del acero</p>
@@ -156,12 +142,12 @@
       </input>
     </math>
   </region>
-  <region id="11" left="9" top="306" color="#000000" bgColor="#dddddd" border="true">
+  <region id="10" left="9" top="279" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>3. Armadura longitudinal propuesta</p>
     </text>
   </region>
-  <region id="12" left="9" top="333" color="#000000" bgColor="#ffffff">
+  <region id="11" left="9" top="306" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Número de barras en tracción</p>
@@ -173,7 +159,7 @@
       </input>
     </math>
   </region>
-  <region id="13" left="9" top="360" color="#000000" bgColor="#ffffff">
+  <region id="12" left="9" top="333" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Diámetro de barras longitudinales</p>
@@ -187,7 +173,7 @@
       </input>
     </math>
   </region>
-  <region id="14" left="9" top="387" color="#000000" bgColor="#ffffff">
+  <region id="13" left="9" top="360" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Diámetro del estribo</p>
@@ -201,12 +187,12 @@
       </input>
     </math>
   </region>
-  <region id="15" left="9" top="414" color="#000000" bgColor="#dddddd" border="true">
+  <region id="14" left="9" top="387" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>4. Solicitaciones de diseño</p>
     </text>
   </region>
-  <region id="16" left="9" top="441" color="#000000" bgColor="#ffffff">
+  <region id="15" left="9" top="414" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Momento último de diseño</p>
@@ -222,7 +208,7 @@
       </input>
     </math>
   </region>
-  <region id="17" left="9" top="468" color="#000000" bgColor="#ffffff">
+  <region id="16" left="9" top="441" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Corte último de diseño</p>
@@ -236,12 +222,12 @@
       </input>
     </math>
   </region>
-  <region id="18" left="9" top="495" color="#000000" bgColor="#dddddd" border="true">
+  <region id="17" left="9" top="468" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>5. Propiedades calculadas</p>
     </text>
   </region>
-  <region id="19" left="9" top="522" color="#000000" bgColor="#ffffff">
+  <region id="18" left="9" top="495" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Altura efectiva</p>
@@ -267,7 +253,7 @@
       </result>
     </math>
   </region>
-  <region id="20" left="9" top="549" color="#000000" bgColor="#ffffff">
+  <region id="19" left="9" top="522" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Área de una barra</p>
@@ -293,7 +279,7 @@
       </result>
     </math>
   </region>
-  <region id="21" left="9" top="586" color="#000000" bgColor="#ffffff">
+  <region id="20" left="9" top="559" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Área de acero en tracción</p>
@@ -315,12 +301,12 @@
       </result>
     </math>
   </region>
-  <region id="22" left="9" top="613" color="#000000" bgColor="#dddddd" border="true">
+  <region id="21" left="9" top="586" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>6. Propiedades del hormigón — ACI 318-19 §19.2</p>
     </text>
   </region>
-  <region id="23" left="9" top="640" color="#000000" bgColor="#ffffff">
+  <region id="22" left="9" top="613" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Factor de hormigón liviano (peso normal)</p>
@@ -332,7 +318,7 @@
       </input>
     </math>
   </region>
-  <region id="24" left="9" top="667" color="#000000" bgColor="#ffffff">
+  <region id="23" left="9" top="640" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Módulo de rotura — ACI 19.2.3.1</p>
@@ -359,7 +345,7 @@
       </result>
     </math>
   </region>
-  <region id="25" left="9" top="694" color="#000000" bgColor="#ffffff">
+  <region id="24" left="9" top="667" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Factor del bloque de compresión — ACI 22.2.2.4.3</p>
@@ -371,12 +357,12 @@
       </input>
     </math>
   </region>
-  <region id="26" left="9" top="721" color="#000000" bgColor="#dddddd" border="true">
+  <region id="25" left="9" top="694" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>7. Diseño a flexión — ACI 318-19 §22.2</p>
     </text>
   </region>
-  <region id="27" left="9" top="748" color="#000000" bgColor="#ffffff">
+  <region id="26" left="9" top="721" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Profundidad del bloque de compresión</p>
@@ -402,7 +388,7 @@
       </result>
     </math>
   </region>
-  <region id="28" left="9" top="785" color="#000000" bgColor="#ffffff">
+  <region id="27" left="9" top="758" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Profundidad del eje neutro</p>
@@ -422,7 +408,7 @@
       </result>
     </math>
   </region>
-  <region id="29" left="9" top="822" color="#000000" bgColor="#ffffff">
+  <region id="28" left="9" top="795" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Deformación unitaria en el acero en tracción</p>
@@ -443,7 +429,7 @@
       </result>
     </math>
   </region>
-  <region id="30" left="9" top="849" color="#000000" bgColor="#ffffff">
+  <region id="29" left="9" top="822" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Deformación de fluencia del acero</p>
@@ -460,12 +446,12 @@
       </result>
     </math>
   </region>
-  <region id="31" left="9" top="886" color="#000000" bgColor="#dddddd" border="true">
+  <region id="30" left="9" top="859" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>8. Factor de reducción φ — ACI 318-19 §21.2</p>
     </text>
   </region>
-  <region id="32" left="9" top="913" color="#000000" bgColor="#ffffff">
+  <region id="31" left="9" top="886" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Factor φ para flexión (controlada por tracción)</p>
@@ -477,12 +463,12 @@
       </input>
     </math>
   </region>
-  <region id="33" left="9" top="940" color="#000000" bgColor="#dddddd" border="true">
+  <region id="32" left="9" top="913" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>9. Momento resistente — ACI 318-19 §22.3</p>
     </text>
   </region>
-  <region id="34" left="9" top="967" color="#000000" bgColor="#ffffff">
+  <region id="33" left="9" top="940" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Momento nominal</p>
@@ -510,7 +496,7 @@
       </result>
     </math>
   </region>
-  <region id="35" left="9" top="1004" color="#000000" bgColor="#ffffff">
+  <region id="34" left="9" top="977" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Momento resistente de diseño</p>
@@ -532,7 +518,7 @@
       </result>
     </math>
   </region>
-  <region id="36" left="9" top="1031" color="#000000" bgColor="#ffffff">
+  <region id="35" left="9" top="1004" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Valor de φMn</p>
@@ -550,7 +536,7 @@
       </result>
     </math>
   </region>
-  <region id="37" left="9" top="1058" color="#000000" bgColor="#ffffff">
+  <region id="36" left="9" top="1031" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Razón demanda/capacidad a flexión</p>
@@ -567,7 +553,7 @@
       </result>
     </math>
   </region>
-  <region id="38" left="9" top="1095" color="#000000" bgColor="#ffffff">
+  <region id="37" left="9" top="1068" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Verificación: DCR_f ≤ 1.0 → OK</p>
@@ -580,12 +566,12 @@
       </result>
     </math>
   </region>
-  <region id="39" left="9" top="1132" color="#000000" bgColor="#dddddd" border="true">
+  <region id="38" left="9" top="1105" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>10. Cuantías límite — ACI 318-19 §9.6.1</p>
     </text>
   </region>
-  <region id="40" left="9" top="1159" color="#000000" bgColor="#ffffff">
+  <region id="39" left="9" top="1132" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Cuantía mínima — ACI 9.6.1.2</p>
@@ -594,19 +580,31 @@
         <e type="operand">ρ_min</e>
         <e type="operand">0.25</e>
         <e type="operand">f'_c</e>
+        <e type="operand">1</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">*</e>
         <e type="function" preserve="true" args="1">sqrt</e>
         <e type="operator" args="2">*</e>
         <e type="operand">f_y</e>
         <e type="operator" args="2">/</e>
         <e type="operand">1.4</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
         <e type="operand">f_y</e>
         <e type="operator" args="2">/</e>
-        <e type="function" preserve="true" args="2">max</e>
+        <e type="operand">2</e>
+        <e type="operand">1</e>
+        <e type="function" preserve="true" args="4">mat</e>
+        <e type="function" preserve="true" args="1">max</e>
         <e type="operator" args="2">:</e>
       </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="41" left="9" top="1186" color="#000000" bgColor="#ffffff">
+  <region id="40" left="9" top="1209" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Área de acero mínima</p>
@@ -620,9 +618,17 @@
         <e type="operator" args="2">*</e>
         <e type="operator" args="2">:</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">mm</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="42" left="9" top="1213" color="#000000" bgColor="#ffffff">
+  <region id="41" left="9" top="1236" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Cuantía de acero provista</p>
@@ -636,9 +642,12 @@
         <e type="operator" args="2">/</e>
         <e type="operator" args="2">:</e>
       </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="43" left="9" top="1240" color="#000000" bgColor="#ffffff">
+  <region id="42" left="9" top="1273" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Valor de cuantía provista</p>
@@ -648,12 +657,12 @@
       </input>
     </math>
   </region>
-  <region id="44" left="9" top="1267" color="#000000" bgColor="#dddddd" border="true">
+  <region id="43" left="9" top="1300" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>11. Diseño a corte — ACI 318-19 §22.5</p>
     </text>
   </region>
-  <region id="45" left="9" top="1294" color="#000000" bgColor="#ffffff">
+  <region id="44" left="9" top="1327" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Factor φ para corte</p>
@@ -665,7 +674,7 @@
       </input>
     </math>
   </region>
-  <region id="46" left="9" top="1321" color="#000000" bgColor="#ffffff">
+  <region id="45" left="9" top="1354" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Resistencia al corte del hormigón — ACI 22.5.5.1</p>
@@ -676,6 +685,10 @@
         <e type="operand">λ</e>
         <e type="operator" args="2">*</e>
         <e type="operand">f'_c</e>
+        <e type="operand">1</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">*</e>
         <e type="function" preserve="true" args="1">sqrt</e>
         <e type="operator" args="2">*</e>
         <e type="operand">b</e>
@@ -684,9 +697,15 @@
         <e type="operator" args="2">*</e>
         <e type="operator" args="2">:</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">tonnef</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="47" left="9" top="1348" color="#000000" bgColor="#ffffff">
+  <region id="46" left="9" top="1381" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Resistencia de diseño al corte del hormigón</p>
@@ -698,9 +717,15 @@
         <e type="operator" args="2">*</e>
         <e type="operator" args="2">:</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">tonnef</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="48" left="9" top="1375" color="#000000" bgColor="#ffffff">
+  <region id="47" left="9" top="1408" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Valor de φVc</p>
@@ -708,14 +733,20 @@
       <input>
         <e type="operand">φV_c</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">tonnef</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="49" left="9" top="1402" color="#000000" bgColor="#dddddd" border="true">
+  <region id="48" left="9" top="1435" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>12. Armadura transversal — ACI 318-19 §22.5.10</p>
     </text>
   </region>
-  <region id="50" left="9" top="1429" color="#000000" bgColor="#ffffff">
+  <region id="49" left="9" top="1462" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Resistencia al corte requerida del acero</p>
@@ -729,9 +760,15 @@
         <e type="operator" args="2">-</e>
         <e type="operator" args="2">:</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">tonnef</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="51" left="9" top="1456" color="#000000" bgColor="#ffffff">
+  <region id="50" left="9" top="1499" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Valor de Vs</p>
@@ -739,9 +776,15 @@
       <input>
         <e type="operand">V_s</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">tonnef</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="52" left="9" top="1483" color="#000000" bgColor="#ffffff">
+  <region id="51" left="9" top="1526" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Área del estribo (2 ramas)</p>
@@ -759,9 +802,17 @@
         <e type="operator" args="2">*</e>
         <e type="operator" args="2">:</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">mm</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="53" left="9" top="1510" color="#000000" bgColor="#ffffff">
+  <region id="52" left="9" top="1563" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Separación requerida de estribos</p>
@@ -779,7 +830,7 @@
       </input>
     </math>
   </region>
-  <region id="54" left="9" top="1537" color="#000000" bgColor="#ffffff">
+  <region id="53" left="9" top="1600" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Valor de separación requerida</p>
@@ -787,14 +838,20 @@
       <input>
         <e type="operand">s_req</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">mm</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="55" left="9" top="1564" color="#000000" bgColor="#dddddd" border="true">
+  <region id="54" left="9" top="1627" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>13. Separación máxima — ACI 318-19 §9.7.6.2.2</p>
     </text>
   </region>
-  <region id="56" left="9" top="1591" color="#000000" bgColor="#ffffff">
+  <region id="55" left="9" top="1654" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Separación máxima de estribos</p>
@@ -807,27 +864,26 @@
         <e type="operand">600</e>
         <e type="operand" style="unit">mm</e>
         <e type="operator" args="2">*</e>
-        <e type="function" preserve="true" args="2">min</e>
+        <e type="operand">2</e>
+        <e type="operand">1</e>
+        <e type="function" preserve="true" args="4">mat</e>
+        <e type="function" preserve="true" args="1">min</e>
         <e type="operator" args="2">:</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">mm</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="57" left="9" top="1618" color="#000000" bgColor="#ffffff">
-    <math optimize="2">
-      <description active="true" position="Right" lang="eng">
-        <p>Valor de separación máxima</p>
-      </description>
-      <input>
-        <e type="operand">s_max</e>
-      </input>
-    </math>
-  </region>
-  <region id="58" left="9" top="1645" color="#000000" bgColor="#dddddd" border="true">
+  <region id="56" left="9" top="1721" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>14. Resumen de verificaciones</p>
     </text>
   </region>
-  <region id="59" left="9" top="1672" color="#000000" bgColor="#ffffff">
+  <region id="57" left="9" top="1748" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>DCR flexión (debe ser ≤ 1.0)</p>
@@ -835,9 +891,12 @@
       <input>
         <e type="operand">DCR_f</e>
       </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="60" left="9" top="1699" color="#000000" bgColor="#ffffff">
+  <region id="58" left="9" top="1775" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Deformación del acero (debe ser ≥ 0.005 para control por tracción)</p>
@@ -845,9 +904,12 @@
       <input>
         <e type="operand">ε_t</e>
       </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="61" left="9" top="1726" color="#000000" bgColor="#ffffff">
+  <region id="59" left="9" top="1802" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Cuantía provista (debe ser ≥ ρ_min)</p>
@@ -855,9 +917,12 @@
       <input>
         <e type="operand">ρ</e>
       </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="62" left="9" top="1753" color="#000000" bgColor="#ffffff">
+  <region id="60" left="9" top="1829" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Cuantía mínima</p>
@@ -865,9 +930,12 @@
       <input>
         <e type="operand">ρ_min</e>
       </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="63" left="9" top="1780" color="#000000" bgColor="#ffffff">
+  <region id="61" left="9" top="1856" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Separación requerida de estribos</p>
@@ -875,9 +943,15 @@
       <input>
         <e type="operand">s_req</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">mm</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
-  <region id="64" left="9" top="1807" color="#000000" bgColor="#ffffff">
+  <region id="62" left="9" top="1883" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <description active="true" position="Right" lang="eng">
         <p>Separación máxima de estribos</p>
@@ -885,6 +959,12 @@
       <input>
         <e type="operand">s_max</e>
       </input>
+      <contract>
+        <e type="operand" style="unit">mm</e>
+      </contract>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
     </math>
   </region>
 </regions>

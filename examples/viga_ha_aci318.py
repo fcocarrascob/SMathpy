@@ -10,7 +10,7 @@ from smathpy.expression import (
 )
 
 def main():
-    ws = Worksheet(title="Viga de Hormigón Armado ACI318-19", author="smathpy")
+    ws = Worksheet(title="Viga de Hormigón Armado ACI318-19", author="FCB")
 
     # ════════════════════════════════════════════════════════════════════
     # TÍTULO
@@ -28,8 +28,6 @@ def main():
                                   description="Altura total de la viga"))
     ws.add(MathRegion.assignment("r", 40, unit_name="mm",
                                   description="Recubrimiento libre"))
-    ws.add(MathRegion.assignment("L", 6, unit_name="m",
-                                  description="Luz libre de la viga"))
 
     # ════════════════════════════════════════════════════════════════════
     # 2. DATOS DE ENTRADA — MATERIALES
@@ -267,12 +265,13 @@ def main():
     # ρ_min = max([0.25·√(f'c·1MPa)/fy, 1.4MPa/fy])  — §9.6.1.2
     rho_min_1 = num(0.25) * sqrt(f_c * (num(1) @ "MPa")) / f_y
     rho_min_2 = (num(1.4) @ "MPa") / f_y
-    rho_min_expr = call("max", mat(rho_min_1, rho_min_2))   # vector [rho1, rho2]
+    rho_min_expr = call("max", mat([[rho_min_1], [rho_min_2]]))  # vector columna [rho1; rho2]
     ws.add(MathRegion(
         expr=assign("ρ_min", rho_min_expr),
         show_result=True,
         description="Cuantía mínima — ACI 9.6.1.2"
     ))
+    ws.add_spacing(50)
 
     # As_min = ρ_min · b · d
     rho_min = var("ρ_min")
@@ -291,6 +290,7 @@ def main():
         show_result=True,
         description="Cuantía de acero provista"
     ))
+    ws.add_spacing(10)
 
     ws.add(MathRegion(
         expr=evaluate("ρ"),
@@ -308,9 +308,11 @@ def main():
     phi_v = var("φ_v")
 
     # Vc = 0.17·λ·√(f'c)·b·d  (§22.5.5.1 — simplificado)
-    V_c_expr = num(0.17) * lam * sqrt(f_c) * b * d
+    V_c_expr = num(0.17) * lam * sqrt(f_c * (num(1) @ "MPa")) * b * d
     ws.add(MathRegion(
         expr=assign("V_c", V_c_expr),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef"], []),
         description="Resistencia al corte del hormigón — ACI 22.5.5.1"
     ))
 
@@ -320,11 +322,15 @@ def main():
     phi_Vc_expr = phi_v * V_c
     ws.add(MathRegion(
         expr=assign("φV_c", phi_Vc_expr),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef"], []),
         description="Resistencia de diseño al corte del hormigón"
     ))
 
     ws.add(MathRegion(
         expr=evaluate("φV_c"),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef"], []),
         description="Valor de φVc"
     ))
 
@@ -340,11 +346,16 @@ def main():
     V_s_req_expr = V_u / phi_v - V_c
     ws.add(MathRegion(
         expr=assign("V_s", V_s_req_expr),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef"], []),
         description="Resistencia al corte requerida del acero"
     ))
+    ws.add_spacing(10)
 
     ws.add(MathRegion(
         expr=evaluate("V_s"),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef"], []),
         description="Valor de Vs"
     ))
 
@@ -354,8 +365,11 @@ def main():
     A_v_expr = num(2) * pi / num(4) * d_e ** num(2)
     ws.add(MathRegion(
         expr=assign("A_v", A_v_expr),
+        show_result=True,
+        contract_expr=compound_unit(["mm","mm"], []),
         description="Área del estribo (2 ramas)"
     ))
+    ws.add_spacing(10)
 
     A_v = var("A_v")
 
@@ -365,9 +379,12 @@ def main():
         expr=assign("s_req", s_req_expr),
         description="Separación requerida de estribos"
     ))
+    ws.add_spacing(10)
 
     ws.add(MathRegion(
         expr=evaluate("s_req"),
+        show_result=True,
+        contract_expr=compound_unit(["mm"], []),
         description="Valor de separación requerida"
     ))
 
@@ -376,18 +393,15 @@ def main():
     # ════════════════════════════════════════════════════════════════════
     ws.add(TextRegion.section("13. Separación máxima — ACI 318-19 §9.7.6.2.2"))
 
-    # s_max = min(d/2, 600mm) para Vs ≤ 0.33·√(f'c)·b·d
-    # s_max = min(d/2, 600mm) para Vs ≤ 0.33·√(f'c)·b·d
-    s_max_expr = call("min", d / num(2), num(600) @ "mm")
+    # s_max = min([d/2, 600mm]) para Vs ≤ 0.33·√(f'c)·b·d
+    s_max_expr = call("min", mat([[d / num(2)], [num(600) @ "mm"]]))  # vector columna [d/2; 600mm]
     ws.add(MathRegion(
         expr=assign("s_max", s_max_expr),
+        show_result=True,
+        contract_unit="mm",
         description="Separación máxima de estribos"
     ))
-
-    ws.add(MathRegion(
-        expr=evaluate("s_max"),
-        description="Valor de separación máxima"
-    ))
+    ws.add_spacing(40)
 
     # ════════════════════════════════════════════════════════════════════
     # 14. RESUMEN DE VERIFICACIONES
@@ -396,37 +410,45 @@ def main():
 
     ws.add(MathRegion(
         expr=evaluate("DCR_f"),
+        show_result=True,
         description="DCR flexión (debe ser ≤ 1.0)"
     ))
 
     ws.add(MathRegion(
         expr=evaluate("ε_t"),
+        show_result=True,
         description="Deformación del acero (debe ser ≥ 0.005 para control por tracción)"
     ))
 
     ws.add(MathRegion(
         expr=evaluate("ρ"),
+        show_result=True,
         description="Cuantía provista (debe ser ≥ ρ_min)"
     ))
 
     ws.add(MathRegion(
         expr=evaluate("ρ_min"),
+        show_result=True,
         description="Cuantía mínima"
     ))
 
     ws.add(MathRegion(
         expr=evaluate("s_req"),
+        show_result=True,
+        contract_expr=compound_unit(["mm"], []),
         description="Separación requerida de estribos"
     ))
 
     ws.add(MathRegion(
         expr=evaluate("s_max"),
+        show_result=True,
+        contract_expr=compound_unit(["mm"], []),
         description="Separación máxima de estribos"
     ))
 
     # ── Guardar ──
-    ws.save("output/viga_ha.sm")
-    print("✓ Guardado output/viga_ha.sm")
+    ws.save("output/Viga_HA_ACI318.sm")
+    print("✓ Guardado output/Viga_HA_ACI318.sm")
 
 
 if __name__ == "__main__":
