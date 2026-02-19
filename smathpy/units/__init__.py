@@ -3,13 +3,28 @@
 from __future__ import annotations
 
 from ..expression.builder import Expr, _coerce
-from ..expression.elements import operator, unit_operand
+from ..expression.elements import operator, operand, unit_operand
 
 
 def with_unit(value, unit_name: str) -> Expr:
     """Attach a unit to a value: ``with_unit(5, 'm')`` → ``5 * m[unit]``."""
     val = _coerce(value)
     return Expr(val._elements + [unit_operand(unit_name), operator("*", 2)])
+
+
+def power_unit(unit_name: str, exp: int) -> Expr:
+    """Build a unit raised to a power: ``power_unit('mm', 2)`` → ``mm²``.
+
+    Produces the RPN: ``[unit(mm), operand(2), ^]``
+    Useful as a ``contract_expr`` to display results in e.g. mm² instead of m².
+
+    Example usage::
+
+        from smathpy.units import power_unit
+        ws.add(MathRegion(expr=assign('A_s', expr), show_result=True,
+                          contract_expr=power_unit('mm', 2)))
+    """
+    return Expr([unit_operand(unit_name), operand(str(exp)), operator("^", 2)])
 
 
 def compound_unit(numerator: list, denominator: list = None) -> Expr:

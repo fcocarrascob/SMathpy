@@ -40,6 +40,7 @@ class MathRegion(Region):
 
     # Contract (output unit)
     contract_unit: Optional[str] = None
+    contract_expr: Optional[Expr] = None  # compound unit Expr, e.g. power_unit('mm', 2)
 
     # Description (annotation)
     description: Optional[str] = None

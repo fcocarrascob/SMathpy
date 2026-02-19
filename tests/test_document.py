@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 
 from smathpy import Worksheet, TextRegion, MathRegion, assign, var, num, evaluate
 from smathpy.constants import SMATH_NAMESPACE
+from smathpy.units import power_unit, compound_unit
 
 
 NS = {"sm": SMATH_NAMESPACE}
@@ -152,6 +153,66 @@ class TestMathRegionSerialization:
         e = contract.find(f"{{{SMATH_NAMESPACE}}}e")
         assert e.text == "kN"
         assert e.get("style") == "unit"
+
+    def test_contract_expr_power_unit(self):
+        """contract_expr=power_unit('mm', 2) → <contract> with mm ^ 2 RPN."""
+        ws = Worksheet()
+        ws.add(MathRegion(
+            expr=assign("A_s", 1140),
+            show_result=True,
+            contract_expr=power_unit("mm", 2),
+        ))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        contract = root.find(f".//{{{SMATH_NAMESPACE}}}contract")
+        assert contract is not None
+        elems = contract.findall(f"{{{SMATH_NAMESPACE}}}e")
+        # RPN: mm[unit], 2[operand], ^[operator]
+        assert len(elems) == 3
+        assert elems[0].text == "mm"
+        assert elems[0].get("style") == "unit"
+        assert elems[1].text == "2"
+        assert elems[2].text == "^"
+        assert elems[2].get("type") == "operator"
+
+    def test_contract_expr_compound_unit(self):
+        """contract_expr=compound_unit(['kN'], ['m']) → <contract> with kN / m RPN."""
+        ws = Worksheet()
+        ws.add(MathRegion(
+            expr=assign("q", 4),
+            show_result=True,
+            contract_expr=compound_unit(["kN"], ["m"]),
+        ))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        contract = root.find(f".//{{{SMATH_NAMESPACE}}}contract")
+        assert contract is not None
+        elems = contract.findall(f"{{{SMATH_NAMESPACE}}}e")
+        # RPN: kN[unit], m[unit], /[operator]
+        assert len(elems) == 3
+        assert elems[0].text == "kN"
+        assert elems[1].text == "m"
+        assert elems[2].text == "/"
+
+    def test_contract_expr_overrides_contract_unit(self):
+        """contract_expr takes priority over contract_unit when both are set."""
+        ws = Worksheet()
+        ws.add(MathRegion(
+            expr=assign("A_s", 1140),
+            show_result=True,
+            contract_unit="m",          # should be ignored
+            contract_expr=power_unit("mm", 2),
+        ))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        contract = root.find(f".//{{{SMATH_NAMESPACE}}}contract")
+        elems = contract.findall(f"{{{SMATH_NAMESPACE}}}e")
+        # Should have mm^2 (3 elements), not m (1 element)
+        assert len(elems) == 3
+        assert elems[0].text == "mm"
 
     def test_expression_region(self):
         x = var("x")

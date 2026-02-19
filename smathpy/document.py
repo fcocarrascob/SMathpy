@@ -293,7 +293,12 @@ class Worksheet:
                 e_el.text = elem.value
 
         # Contract (output unit)
-        if region.contract_unit:
+        if region.contract_expr:
+            contract_el = ET.SubElement(math_el, f"{{{ns}}}contract")
+            for elem in region.contract_expr.elements:
+                e_el = ET.SubElement(contract_el, f"{{{ns}}}e", elem.to_xml_attribs())
+                e_el.text = elem.value
+        elif region.contract_unit:
             contract_el = ET.SubElement(math_el, f"{{{ns}}}contract")
             from .expression.elements import unit_operand as _uo
             uo = _uo(region.contract_unit)

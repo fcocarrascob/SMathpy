@@ -1,9 +1,9 @@
 """Diseño y verificación de viga de hormigón armado según ACI 318-19."""
 
 from smathpy import Worksheet, TextRegion, MathRegion, var, assign, evaluate, num
-from smathpy.expression import sum_, func_assign, call
+from smathpy.expression import sum_, func_assign, call, mat
 from smathpy.expression.functions import sqrt
-from smathpy.units import with_unit, value_with_compound_unit
+from smathpy.units import with_unit, value_with_compound_unit, compound_unit
 # ── Control structures ─────────────────────────────────────────────────────
 from smathpy.expression import (
     line, range_, for_range, for_loop, while_loop, if_, sum_, product_,
@@ -63,7 +63,7 @@ def main():
     ws.add(TextRegion.section("4. Solicitaciones de diseño"))
 
     ws.add(MathRegion(
-        expr=assign("M_u", value_with_compound_unit(120, ["kN"], []) * var("m")),
+        expr=assign("M_u", value_with_compound_unit(120, ["kN", "m"], []) ),
         description="Momento último de diseño"
     ))
     ws.add(MathRegion(
@@ -92,6 +92,7 @@ def main():
     ws.add(MathRegion(
         expr=assign("d", d_expr),
         show_result=True,
+        contract_expr=compound_unit(["mm"], []),
         description="Altura efectiva"
     ))
 
@@ -101,8 +102,10 @@ def main():
     ws.add(MathRegion(
         expr=assign("A_b", A_b_expr),
         show_result=True,
+        contract_expr=compound_unit(["mm","mm"], []),
         description="Área de una barra"
     ))
+    ws.add_spacing(10)
 
     # Área de acero total: A_s = n_b * A_b
     A_b = var("A_b")
@@ -110,8 +113,10 @@ def main():
     ws.add(MathRegion(
         expr=assign("A_s", A_s_expr),
         show_result=True,
+        contract_expr=compound_unit(["mm","mm"], []),
         description="Área de acero en tracción"
     ))
+
 
     # ════════════════════════════════════════════════════════════════════
     # 6. MÓDULO DE ROTURA Y RESISTENCIA DEL HORMIGÓN (ACI 318-19 §19.2)
@@ -127,6 +132,8 @@ def main():
     fr_expr = num(0.62) * lam * sqrt(f_c * (num(1) @ "MPa"))
     ws.add(MathRegion(
         expr=assign("f_r", fr_expr),
+        show_result=True,
+        contract_expr=compound_unit(["MPa"], []),
         description="Módulo de rotura — ACI 19.2.3.1"
     ))
 
@@ -148,8 +155,11 @@ def main():
     a_expr = A_s * f_y / (num(0.85) * f_c * b)
     ws.add(MathRegion(
         expr=assign("a", a_expr),
+        show_result=True,
+        contract_expr=compound_unit(["mm"], []),
         description="Profundidad del bloque de compresión"
     ))
+    ws.add_spacing(10)
 
     a = var("a")
 
@@ -157,8 +167,11 @@ def main():
     c_expr = a / beta1
     ws.add(MathRegion(
         expr=assign("c", c_expr),
+        show_result=True,
+        contract_expr=compound_unit(["mm"], []),
         description="Profundidad del eje neutro"
     ))
+    ws.add_spacing(10)
 
     c = var("c")
 
@@ -166,6 +179,7 @@ def main():
     eps_t_expr = num(0.003) * (d - c) / c
     ws.add(MathRegion(
         expr=assign("ε_t", eps_t_expr),
+        show_result=True,
         description="Deformación unitaria en el acero en tracción"
     ))
 
@@ -176,9 +190,10 @@ def main():
     eps_y_expr = f_y / E_s
     ws.add(MathRegion(
         expr=assign("ε_y", eps_y_expr),
+        show_result=True,
         description="Deformación de fluencia del acero"
     ))
-
+    ws.add_spacing(10)
     # ════════════════════════════════════════════════════════════════════
     # 8. FACTOR DE REDUCCIÓN φ (ACI 318-19 §21.2)
     # ════════════════════════════════════════════════════════════════════
@@ -201,8 +216,11 @@ def main():
     M_n_expr = A_s * f_y * (d - a / num(2))
     ws.add(MathRegion(
         expr=assign("M_n", M_n_expr),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef","m"], []),
         description="Momento nominal"
     ))
+    ws.add_spacing(10)
 
     M_n = var("M_n")
 
@@ -210,12 +228,16 @@ def main():
     phi_Mn_expr = phi_f * M_n
     ws.add(MathRegion(
         expr=assign("φM_n", phi_Mn_expr),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef","m"], []),
         description="Momento resistente de diseño"
     ))
 
     # Evaluación φMn
     ws.add(MathRegion(
         expr=evaluate("φM_n"),
+        show_result=True,
+        contract_expr=compound_unit(["tonnef","m"], []),
         description="Valor de φMn"
     ))
 
@@ -225,25 +247,30 @@ def main():
     ratio_f_expr = M_u / phi_Mn
     ws.add(MathRegion(
         expr=assign("DCR_f", ratio_f_expr),
+        show_result=True,
         description="Razón demanda/capacidad a flexión"
     ))
+    ws.add_spacing(10)
 
     ws.add(MathRegion(
         expr=evaluate("DCR_f"),
+        show_result=True,
         description="Verificación: DCR_f ≤ 1.0 → OK"
     ))
+    ws.add_spacing(10)
 
     # ════════════════════════════════════════════════════════════════════
     # 10. CUANTÍAS MÍNIMA Y MÁXIMA (ACI 318-19 §9.6.1)
     # ════════════════════════════════════════════════════════════════════
     ws.add(TextRegion.section("10. Cuantías límite — ACI 318-19 §9.6.1"))
 
-    # ρ_min = max(0.25·√(f'c)/fy, 1.4/fy)  — §9.6.1.2
-    rho_min_1 = num(0.25) * sqrt(f_c) / f_y
-    rho_min_2 = num(1.4) / f_y
-    rho_min_expr = call("max", rho_min_1, rho_min_2)
+    # ρ_min = max([0.25·√(f'c·1MPa)/fy, 1.4MPa/fy])  — §9.6.1.2
+    rho_min_1 = num(0.25) * sqrt(f_c * (num(1) @ "MPa")) / f_y
+    rho_min_2 = (num(1.4) @ "MPa") / f_y
+    rho_min_expr = call("max", mat(rho_min_1, rho_min_2))   # vector [rho1, rho2]
     ws.add(MathRegion(
         expr=assign("ρ_min", rho_min_expr),
+        show_result=True,
         description="Cuantía mínima — ACI 9.6.1.2"
     ))
 
@@ -252,6 +279,8 @@ def main():
     As_min_expr = rho_min * b * d
     ws.add(MathRegion(
         expr=assign("A_s.min", As_min_expr),
+        show_result=True,
+        contract_expr=compound_unit(["mm", "mm"], []),
         description="Área de acero mínima"
     ))
 
@@ -259,6 +288,7 @@ def main():
     rho_expr = A_s / (b * d)
     ws.add(MathRegion(
         expr=assign("ρ", rho_expr),
+        show_result=True,
         description="Cuantía de acero provista"
     ))
 
