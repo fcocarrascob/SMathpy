@@ -36,6 +36,7 @@ class MathRegion(Region):
     # Result (cached)
     result_action: Optional[str] = None  # "numeric" or "symbolic"
     result_elements: Optional[List[Element]] = None
+    show_result: bool = False  # emit <result action="numeric"/> so SMath evaluates inline
 
     # Contract (output unit)
     contract_unit: Optional[str] = None

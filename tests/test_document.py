@@ -166,6 +166,54 @@ class TestMathRegionSerialization:
         elems = input_el.findall(f"{{{SMATH_NAMESPACE}}}e")
         assert len(elems) > 0
 
+    def test_show_result_emits_result_tag(self):
+        ws = Worksheet()
+        ws.add(MathRegion(expr=assign("d", 449), show_result=True))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        result_el = root.find(f".//{{{SMATH_NAMESPACE}}}result")
+        assert result_el is not None, "<result> element missing when show_result=True"
+        assert result_el.get("action") == "numeric"
+        # Must have at least one <e> child so SMath Studio doesn't reject the region
+        children = result_el.findall(f"{{{SMATH_NAMESPACE}}}e")
+        assert len(children) >= 1, "<result> must contain at least one <e> placeholder"
+        assert children[0].text == "0"  # placeholder value
+
+    def test_show_result_false_no_result_tag(self):
+        ws = Worksheet()
+        ws.add(MathRegion(expr=assign("d", 449), show_result=False))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        result_el = root.find(f".//{{{SMATH_NAMESPACE}}}result")
+        assert result_el is None, "<result> element should not be present when show_result=False"
+
+    def test_assignment_factory_show_result(self):
+        ws = Worksheet()
+        ws.add(MathRegion.assignment("b", 300, unit_name="mm", show_result=True))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        result_el = root.find(f".//{{{SMATH_NAMESPACE}}}result")
+        assert result_el is not None
+        assert result_el.get("action") == "numeric"
+        children = result_el.findall(f"{{{SMATH_NAMESPACE}}}e")
+        assert len(children) >= 1, "<result> must contain at least one <e> placeholder"
+
+    def test_evaluation_factory_emits_result_tag(self):
+        """MathRegion.evaluation() sets result_action but not result_elements — should still emit <result>."""
+        ws = Worksheet()
+        ws.add(MathRegion.evaluation("d"))
+        tree = ws.to_xml()
+        root = tree.getroot()
+
+        result_el = root.find(f".//{{{SMATH_NAMESPACE}}}result")
+        assert result_el is not None, "<result> element missing for MathRegion.evaluation()"
+        assert result_el.get("action") == "numeric"
+        children = result_el.findall(f"{{{SMATH_NAMESPACE}}}e")
+        assert len(children) >= 1, "<result> must contain at least one <e> placeholder"
+
 
 class TestSaveFile:
     def test_save_and_read(self, tmp_path):

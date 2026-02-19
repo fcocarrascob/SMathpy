@@ -301,12 +301,22 @@ class Worksheet:
             e_el.text = uo.value
 
         # Result
-        if region.result_action and region.result_elements:
+        effective_action = region.result_action or ("numeric" if region.show_result else None)
+        if effective_action:
             result_el = ET.SubElement(math_el, f"{{{ns}}}result")
-            result_el.set("action", region.result_action)
-            for elem in region.result_elements:
-                e_el = ET.SubElement(result_el, f"{{{ns}}}e", elem.to_xml_attribs())
-                e_el.text = elem.value
+            result_el.set("action", effective_action)
+            elements_to_render = region.result_elements or []
+            if elements_to_render:
+                for elem in elements_to_render:
+                    e_el = ET.SubElement(result_el, f"{{{ns}}}e", elem.to_xml_attribs())
+                    e_el.text = elem.value
+            else:
+                # SMath Studio requires at least one <e> element inside <result>.
+                # Emit a placeholder "0" — SMath overwrites it on first evaluation.
+                from .expression.elements import operand as _op
+                placeholder = _op("0")
+                e_el = ET.SubElement(result_el, f"{{{ns}}}e", placeholder.to_xml_attribs())
+                e_el.text = placeholder.value
 
     def _build_plot_region(self, parent: ET.Element, region: PlotRegion) -> None:
         ns = SMATH_NAMESPACE
@@ -365,8 +375,7 @@ class Worksheet:
         term_el = ET.SubElement(region_el, f"{{{ns}}}region", term_attribs)
         term_area = ET.SubElement(term_el, f"{{{ns}}}area")
         term_area.set("terminator", "true")
-
-
+    
 def _indent_xml(elem: ET.Element, level: int = 0) -> None:
     """Add indentation to an ElementTree (in-place).
 

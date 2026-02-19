@@ -3,11 +3,11 @@
 <regions xmlns="http://smath.info/schemas/worksheet/1.0">
   <settings dpi="96">
     <identity>
-      <id>aa3d14b9-c742-4df5-a872-a024089a97a1</id>
+      <id>b05e5238-fe3c-4318-9822-bb80bda045e8</id>
       <revision>1</revision>
     </identity>
     <metadata lang="eng">
-      <title>Simple Beam Calculation</title>
+      <title>Viga de Hormigón Armado ACI318-19</title>
       <author>smathpy</author>
     </metadata>
     <calculation>
@@ -31,26 +31,70 @@
   </settings>
   <region id="0" left="9" top="9" color="#0000ff" bgColor="#ffffff" fontSize="12">
     <text lang="eng">
-      <p bold="true">Simple Beam Calculation</p>
+      <p bold="true">Viga de Hormigón Armado ACI318-19</p>
     </text>
   </region>
   <region id="1" left="9" top="36" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
-      <p>Input data:</p>
+      <p>Datos de entrada:</p>
     </text>
   </region>
   <region id="2" left="9" top="63" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
-        <e type="operand">L</e>
-        <e type="operand">3</e>
-        <e type="operand" style="unit">m</e>
+        <e type="operand">b</e>
+        <e type="operand">300</e>
+        <e type="operand" style="unit">mm</e>
         <e type="operator" args="2">*</e>
         <e type="operator" args="2">:</e>
       </input>
     </math>
   </region>
   <region id="3" left="9" top="90" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">h</e>
+        <e type="operand">300</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="4" left="9" top="117" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">rec</e>
+        <e type="operand">50</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="5" left="9" top="144" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">f_c</e>
+        <e type="operand">25</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="6" left="9" top="171" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <input>
+        <e type="operand">f_y</e>
+        <e type="operand">420</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="7" left="9" top="198" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">q_i</e>
@@ -63,12 +107,12 @@
       </input>
     </math>
   </region>
-  <region id="4" left="9" top="117" color="#000000" bgColor="#dddddd" border="true">
+  <region id="8" left="9" top="225" color="#000000" bgColor="#dddddd" border="true">
     <text lang="eng">
       <p>Calculations:</p>
     </text>
   </region>
-  <region id="5" left="9" top="144" color="#000000" bgColor="#ffffff">
+  <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_0</e>
@@ -79,7 +123,7 @@
       </input>
     </math>
   </region>
-  <region id="6" left="9" top="171" color="#000000" bgColor="#ffffff">
+  <region id="10" left="9" top="279" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_1</e>
@@ -90,7 +134,7 @@
       </input>
     </math>
   </region>
-  <region id="7" left="9" top="198" color="#000000" bgColor="#ffffff">
+  <region id="11" left="9" top="306" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_2</e>
@@ -101,7 +145,7 @@
       </input>
     </math>
   </region>
-  <region id="8" left="9" top="225" color="#000000" bgColor="#ffffff">
+  <region id="12" left="9" top="333" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_3</e>
@@ -112,7 +156,7 @@
       </input>
     </math>
   </region>
-  <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
+  <region id="13" left="9" top="360" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_4</e>
@@ -123,7 +167,7 @@
       </input>
     </math>
   </region>
-  <region id="10" left="9" top="279" color="#000000" bgColor="#ffffff">
+  <region id="14" left="9" top="387" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_5</e>
@@ -134,7 +178,7 @@
       </input>
     </math>
   </region>
-  <region id="11" left="9" top="306" color="#000000" bgColor="#ffffff">
+  <region id="15" left="9" top="414" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_6</e>
@@ -145,7 +189,7 @@
       </input>
     </math>
   </region>
-  <region id="12" left="9" top="333" color="#000000" bgColor="#ffffff">
+  <region id="16" left="9" top="441" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_7</e>
@@ -156,7 +200,7 @@
       </input>
     </math>
   </region>
-  <region id="13" left="9" top="360" color="#000000" bgColor="#ffffff">
+  <region id="17" left="9" top="468" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_8</e>
@@ -167,7 +211,7 @@
       </input>
     </math>
   </region>
-  <region id="14" left="9" top="387" color="#000000" bgColor="#ffffff">
+  <region id="18" left="9" top="495" color="#000000" bgColor="#ffffff">
     <math optimize="2">
       <input>
         <e type="operand">x_9</e>

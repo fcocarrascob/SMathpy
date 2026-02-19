@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?application progid="SMath Studio Desktop" version="0.98.6606.22069"?>
+<regions xmlns="http://smath.info/schemas/worksheet/1.0">
+  <settings dpi="96">
+    <identity>
+      <id>1bf5b93e-7ccc-4629-8cdf-a8a7d1055b7c</id>
+      <revision>1</revision>
+    </identity>
+    <metadata lang="eng">
+      <title>Viga de Hormigón Armado ACI318-19</title>
+      <author>smathpy</author>
+    </metadata>
+    <calculation>
+      <precision>4</precision>
+      <exponentialThreshold>5</exponentialThreshold>
+      <fractions>decimal</fractions>
+    </calculation>
+    <pageModel active="false" printAreas="true" simpleEqualsOnly="false" printBackgroundImages="true">
+      <paper id="9" orientation="Portrait" width="827" height="1169" />
+      <margins left="39" right="39" top="39" bottom="39" />
+      <header alignment="Center" color="#a9a9a9">&amp;[DATE] &amp;[TIME] - &amp;[FILENAME]</header>
+      <footer alignment="Center" color="#a9a9a9">&amp;[PAGENUM] / &amp;[COUNT]</footer>
+      <backgrounds />
+    </pageModel>
+    <dependencies>
+      <assembly name="SMath Studio Desktop" version="0.98.6606.22069" guid="a37cba83-b69c-4c71-9992-55ff666763bd" />
+      <assembly name="Math Region" version="0.98.6606.22069" guid="02f1ab51-215b-466e-a74d-5d8b1cf85e8d" />
+      <assembly name="Text Region" version="1.10.6606.22071" guid="485d28c5-349a-48b6-93be-12a35a1c1e39" />
+      <assembly name="Special Functions" version="1.11.6606.22071" guid="2814e667-4e12-48b1-8d51-194e480eabc5" />
+    </dependencies>
+  </settings>
+  <region id="0" left="9" top="9" color="#0000ff" bgColor="#ffffff" fontSize="12">
+    <text lang="eng">
+      <p bold="true">Diseño y Verificación de Viga de Hormigón Armado — ACI 318-19</p>
+    </text>
+  </region>
+  <region id="1" left="9" top="36" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>1. Geometría de la sección</p>
+    </text>
+  </region>
+  <region id="2" left="9" top="63" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Ancho de la viga</p>
+      </description>
+      <input>
+        <e type="operand">b</e>
+        <e type="operand">300</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="3" left="9" top="90" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Altura total de la viga</p>
+      </description>
+      <input>
+        <e type="operand">h</e>
+        <e type="operand">500</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="4" left="9" top="117" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Recubrimiento libre</p>
+      </description>
+      <input>
+        <e type="operand">r</e>
+        <e type="operand">40</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="5" left="9" top="144" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Luz libre de la viga</p>
+      </description>
+      <input>
+        <e type="operand">L</e>
+        <e type="operand">6</e>
+        <e type="operand" style="unit">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="6" left="9" top="171" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>2. Propiedades de los materiales</p>
+    </text>
+  </region>
+  <region id="7" left="9" top="198" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Resistencia a compresión del hormigón</p>
+      </description>
+      <input>
+        <e type="operand">f'_c</e>
+        <e type="operand">25</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="8" left="9" top="225" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Fluencia del acero longitudinal</p>
+      </description>
+      <input>
+        <e type="operand">f_y</e>
+        <e type="operand">420</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="9" left="9" top="252" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Fluencia del acero transversal</p>
+      </description>
+      <input>
+        <e type="operand">f_yt</e>
+        <e type="operand">420</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="10" left="9" top="279" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Módulo de elasticidad del acero</p>
+      </description>
+      <input>
+        <e type="operand">E_s</e>
+        <e type="operand">200000</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="11" left="9" top="306" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>3. Armadura longitudinal propuesta</p>
+    </text>
+  </region>
+  <region id="12" left="9" top="333" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Número de barras en tracción</p>
+      </description>
+      <input>
+        <e type="operand">n_b</e>
+        <e type="operand">3</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="13" left="9" top="360" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Diámetro de barras longitudinales</p>
+      </description>
+      <input>
+        <e type="operand">d_b</e>
+        <e type="operand">22</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="14" left="9" top="387" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Diámetro del estribo</p>
+      </description>
+      <input>
+        <e type="operand">d_e</e>
+        <e type="operand">10</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="15" left="9" top="414" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>4. Solicitaciones de diseño</p>
+    </text>
+  </region>
+  <region id="16" left="9" top="441" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Momento último de diseño</p>
+      </description>
+      <input>
+        <e type="operand">M_u</e>
+        <e type="operand">120</e>
+        <e type="operand" style="unit">kN</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">m</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="17" left="9" top="468" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Corte último de diseño</p>
+      </description>
+      <input>
+        <e type="operand">V_u</e>
+        <e type="operand">80</e>
+        <e type="operand" style="unit">kN</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="18" left="9" top="495" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>5. Propiedades calculadas</p>
+    </text>
+  </region>
+  <region id="19" left="9" top="522" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Altura efectiva</p>
+      </description>
+      <input>
+        <e type="operand">d</e>
+        <e type="operand">h</e>
+        <e type="operand">r</e>
+        <e type="operator" args="2">-</e>
+        <e type="operand">d_e</e>
+        <e type="operator" args="2">-</e>
+        <e type="operand">d_b</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">-</e>
+        <e type="operator" args="2">:</e>
+      </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
+    </math>
+  </region>
+  <region id="20" left="9" top="549" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Área de una barra</p>
+      </description>
+      <input>
+        <e type="operand">A_b</e>
+        <e type="operand">π</e>
+        <e type="operand">4</e>
+        <e type="operator" args="2">/</e>
+        <e type="operand">d_b</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">^</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
+    </math>
+  </region>
+  <region id="21" left="9" top="576" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Área de acero en tracción</p>
+      </description>
+      <input>
+        <e type="operand">A_s</e>
+        <e type="operand">n_b</e>
+        <e type="operand">A_b</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+      <result action="numeric">
+        <e type="operand">0</e>
+      </result>
+    </math>
+  </region>
+  <region id="22" left="9" top="603" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>6. Propiedades del hormigón — ACI 318-19 §19.2</p>
+    </text>
+  </region>
+  <region id="23" left="9" top="630" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Factor de hormigón liviano (peso normal)</p>
+      </description>
+      <input>
+        <e type="operand">λ</e>
+        <e type="operand">1</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="24" left="9" top="657" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Módulo de rotura — ACI 19.2.3.1</p>
+      </description>
+      <input>
+        <e type="operand">f_r</e>
+        <e type="operand">0.62</e>
+        <e type="operand">λ</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">f'_c</e>
+        <e type="operand">1</e>
+        <e type="operand" style="unit">MPa</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">*</e>
+        <e type="function" preserve="true" args="1">sqrt</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="25" left="9" top="684" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Factor del bloque de compresión — ACI 22.2.2.4.3</p>
+      </description>
+      <input>
+        <e type="operand">β_1</e>
+        <e type="operand">0.85</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="26" left="9" top="711" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>7. Diseño a flexión — ACI 318-19 §22.2</p>
+    </text>
+  </region>
+  <region id="27" left="9" top="738" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Profundidad del bloque de compresión</p>
+      </description>
+      <input>
+        <e type="operand">a</e>
+        <e type="operand">A_s</e>
+        <e type="operand">f_y</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">0.85</e>
+        <e type="operand">f'_c</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">b</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="28" left="9" top="765" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Profundidad del eje neutro</p>
+      </description>
+      <input>
+        <e type="operand">c</e>
+        <e type="operand">a</e>
+        <e type="operand">β_1</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="29" left="9" top="792" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Deformación unitaria en el acero en tracción</p>
+      </description>
+      <input>
+        <e type="operand">ε_t</e>
+        <e type="operand">0.003</e>
+        <e type="operand">d</e>
+        <e type="operand">c</e>
+        <e type="operator" args="2">-</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">c</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="30" left="9" top="819" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Deformación de fluencia del acero</p>
+      </description>
+      <input>
+        <e type="operand">ε_y</e>
+        <e type="operand">f_y</e>
+        <e type="operand">E_s</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="31" left="9" top="846" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>8. Factor de reducción φ — ACI 318-19 §21.2</p>
+    </text>
+  </region>
+  <region id="32" left="9" top="873" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Factor φ para flexión (controlada por tracción)</p>
+      </description>
+      <input>
+        <e type="operand">φ_f</e>
+        <e type="operand">0.9</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="33" left="9" top="900" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>9. Momento resistente — ACI 318-19 §22.3</p>
+    </text>
+  </region>
+  <region id="34" left="9" top="927" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Momento nominal</p>
+      </description>
+      <input>
+        <e type="operand">M_n</e>
+        <e type="operand">A_s</e>
+        <e type="operand">f_y</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">d</e>
+        <e type="operand">a</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">-</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="35" left="9" top="954" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Momento resistente de diseño</p>
+      </description>
+      <input>
+        <e type="operand">φM_n</e>
+        <e type="operand">φ_f</e>
+        <e type="operand">M_n</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="36" left="9" top="981" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Valor de φMn</p>
+      </description>
+      <input>
+        <e type="operand">φM_n</e>
+      </input>
+    </math>
+  </region>
+  <region id="37" left="9" top="1008" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Razón demanda/capacidad a flexión</p>
+      </description>
+      <input>
+        <e type="operand">DCR_f</e>
+        <e type="operand">M_u</e>
+        <e type="operand">φM_n</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="38" left="9" top="1035" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Verificación: DCR_f ≤ 1.0 → OK</p>
+      </description>
+      <input>
+        <e type="operand">DCR_f</e>
+      </input>
+    </math>
+  </region>
+  <region id="39" left="9" top="1062" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>10. Cuantías límite — ACI 318-19 §9.6.1</p>
+    </text>
+  </region>
+  <region id="40" left="9" top="1089" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Cuantía mínima — ACI 9.6.1.2</p>
+      </description>
+      <input>
+        <e type="operand">ρ_min</e>
+        <e type="operand">0.25</e>
+        <e type="operand">f'_c</e>
+        <e type="function" preserve="true" args="1">sqrt</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">f_y</e>
+        <e type="operator" args="2">/</e>
+        <e type="operand">1.4</e>
+        <e type="operand">f_y</e>
+        <e type="operator" args="2">/</e>
+        <e type="function" preserve="true" args="2">max</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="41" left="9" top="1116" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Área de acero mínima</p>
+      </description>
+      <input>
+        <e type="operand">A_s.min</e>
+        <e type="operand">ρ_min</e>
+        <e type="operand">b</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">d</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="42" left="9" top="1143" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Cuantía de acero provista</p>
+      </description>
+      <input>
+        <e type="operand">ρ</e>
+        <e type="operand">A_s</e>
+        <e type="operand">b</e>
+        <e type="operand">d</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="43" left="9" top="1170" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Valor de cuantía provista</p>
+      </description>
+      <input>
+        <e type="operand">ρ</e>
+      </input>
+    </math>
+  </region>
+  <region id="44" left="9" top="1197" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>11. Diseño a corte — ACI 318-19 §22.5</p>
+    </text>
+  </region>
+  <region id="45" left="9" top="1224" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Factor φ para corte</p>
+      </description>
+      <input>
+        <e type="operand">φ_v</e>
+        <e type="operand">0.75</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="46" left="9" top="1251" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Resistencia al corte del hormigón — ACI 22.5.5.1</p>
+      </description>
+      <input>
+        <e type="operand">V_c</e>
+        <e type="operand">0.17</e>
+        <e type="operand">λ</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">f'_c</e>
+        <e type="function" preserve="true" args="1">sqrt</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">b</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">d</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="47" left="9" top="1278" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Resistencia de diseño al corte del hormigón</p>
+      </description>
+      <input>
+        <e type="operand">φV_c</e>
+        <e type="operand">φ_v</e>
+        <e type="operand">V_c</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="48" left="9" top="1305" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Valor de φVc</p>
+      </description>
+      <input>
+        <e type="operand">φV_c</e>
+      </input>
+    </math>
+  </region>
+  <region id="49" left="9" top="1332" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>12. Armadura transversal — ACI 318-19 §22.5.10</p>
+    </text>
+  </region>
+  <region id="50" left="9" top="1359" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Resistencia al corte requerida del acero</p>
+      </description>
+      <input>
+        <e type="operand">V_s</e>
+        <e type="operand">V_u</e>
+        <e type="operand">φ_v</e>
+        <e type="operator" args="2">/</e>
+        <e type="operand">V_c</e>
+        <e type="operator" args="2">-</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="51" left="9" top="1386" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Valor de Vs</p>
+      </description>
+      <input>
+        <e type="operand">V_s</e>
+      </input>
+    </math>
+  </region>
+  <region id="52" left="9" top="1413" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Área del estribo (2 ramas)</p>
+      </description>
+      <input>
+        <e type="operand">A_v</e>
+        <e type="operand">2</e>
+        <e type="operand">π</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">4</e>
+        <e type="operator" args="2">/</e>
+        <e type="operand">d_e</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">^</e>
+        <e type="operator" args="2">*</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="53" left="9" top="1440" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Separación requerida de estribos</p>
+      </description>
+      <input>
+        <e type="operand">s_req</e>
+        <e type="operand">A_v</e>
+        <e type="operand">f_yt</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">d</e>
+        <e type="operator" args="2">*</e>
+        <e type="operand">V_s</e>
+        <e type="operator" args="2">/</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="54" left="9" top="1467" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Valor de separación requerida</p>
+      </description>
+      <input>
+        <e type="operand">s_req</e>
+      </input>
+    </math>
+  </region>
+  <region id="55" left="9" top="1494" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>13. Separación máxima — ACI 318-19 §9.7.6.2.2</p>
+    </text>
+  </region>
+  <region id="56" left="9" top="1521" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Separación máxima de estribos</p>
+      </description>
+      <input>
+        <e type="operand">s_max</e>
+        <e type="operand">d</e>
+        <e type="operand">2</e>
+        <e type="operator" args="2">/</e>
+        <e type="operand">600</e>
+        <e type="operand" style="unit">mm</e>
+        <e type="operator" args="2">*</e>
+        <e type="function" preserve="true" args="2">min</e>
+        <e type="operator" args="2">:</e>
+      </input>
+    </math>
+  </region>
+  <region id="57" left="9" top="1548" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Valor de separación máxima</p>
+      </description>
+      <input>
+        <e type="operand">s_max</e>
+      </input>
+    </math>
+  </region>
+  <region id="58" left="9" top="1575" color="#000000" bgColor="#dddddd" border="true">
+    <text lang="eng">
+      <p>14. Resumen de verificaciones</p>
+    </text>
+  </region>
+  <region id="59" left="9" top="1602" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>DCR flexión (debe ser ≤ 1.0)</p>
+      </description>
+      <input>
+        <e type="operand">DCR_f</e>
+      </input>
+    </math>
+  </region>
+  <region id="60" left="9" top="1629" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Deformación del acero (debe ser ≥ 0.005 para control por tracción)</p>
+      </description>
+      <input>
+        <e type="operand">ε_t</e>
+      </input>
+    </math>
+  </region>
+  <region id="61" left="9" top="1656" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Cuantía provista (debe ser ≥ ρ_min)</p>
+      </description>
+      <input>
+        <e type="operand">ρ</e>
+      </input>
+    </math>
+  </region>
+  <region id="62" left="9" top="1683" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Cuantía mínima</p>
+      </description>
+      <input>
+        <e type="operand">ρ_min</e>
+      </input>
+    </math>
+  </region>
+  <region id="63" left="9" top="1710" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Separación requerida de estribos</p>
+      </description>
+      <input>
+        <e type="operand">s_req</e>
+      </input>
+    </math>
+  </region>
+  <region id="64" left="9" top="1737" color="#000000" bgColor="#ffffff">
+    <math optimize="2">
+      <description active="true" position="Right" lang="eng">
+        <p>Separación máxima de estribos</p>
+      </description>
+      <input>
+        <e type="operand">s_max</e>
+      </input>
+    </math>
+  </region>
+</regions>
