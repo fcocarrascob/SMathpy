@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import List, Optional, Union
 
 from .constants import (
     APP_PROGID,
@@ -39,12 +38,12 @@ class Worksheet:
         title: str = "",
         author: str = "",
         lang: str = "eng",
-        settings: Optional[Settings] = None,
+        settings: Settings | None = None,
     ):
         self.settings = settings or Settings()
         if title or author:
             self.settings.set_metadata(lang=lang, title=title, author=author)
-        self.regions: List[Region] = []
+        self.regions: list[Region] = []
         self._next_top = DEFAULT_TOP_START
         self._auto_layout = True
 
@@ -95,9 +94,10 @@ class Worksheet:
         """Serialize to a complete XML string with indentation."""
         tree = self.to_xml()
         root = tree.getroot()
+        assert root is not None
 
         # Pretty-print with indentation
-        _indent_xml(root)
+        ET.indent(root, space="  ")
 
         # Build the XML string manually to include processing instructions
         lines = [
@@ -370,6 +370,7 @@ class Worksheet:
             self._build_region(region_el, child)
 
         # Terminator
+        assert region.id is not None
         term_id = region.id + len(region.children) + 1
         term_attribs = {
             "id": str(term_id),
@@ -380,25 +381,3 @@ class Worksheet:
         term_el = ET.SubElement(region_el, f"{{{ns}}}region", term_attribs)
         term_area = ET.SubElement(term_el, f"{{{ns}}}area")
         term_area.set("terminator", "true")
-    
-def _indent_xml(elem: ET.Element, level: int = 0) -> None:
-    """Add indentation to an ElementTree (in-place).
-
-    Compatible with Python 3.8 (ET.indent was added in 3.9).
-    """
-    indent = "\n" + "  " * level
-    child_indent = "\n" + "  " * (level + 1)
-
-    if len(elem):  # has children
-        if not elem.text or not elem.text.strip():
-            elem.text = child_indent
-        for i, child in enumerate(elem):
-            _indent_xml(child, level + 1)
-            if i < len(elem) - 1:
-                if not child.tail or not child.tail.strip():
-                    child.tail = child_indent
-            else:
-                if not child.tail or not child.tail.strip():
-                    child.tail = indent
-    if level and (not elem.tail or not elem.tail.strip()):
-        elem.tail = indent

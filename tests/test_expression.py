@@ -1,9 +1,10 @@
 """Tests for the expression builder: RPN generation, operators, functions."""
 
 from smathpy.expression import (
-    Expr, var, num, assign, define, func_assign, evaluate, call,
+    Expr, var, num, assign, define, func_assign, evaluate, call, coerce,
     operand, operator, function,
 )
+from smathpy.expression.functions import max_, min_
 
 
 class TestBasicExpressions:
@@ -165,3 +166,61 @@ class TestUnitAttachment:
         expr = (var("b") * var("c")).grouped()
         assert expr.elements[-1].type == "bracket"
         assert expr.elements[-1].value == "("
+
+
+class TestMaxMinVariadic:
+    """Test variadic max_ and min_ wrappers."""
+
+    def test_max_single_arg(self):
+        """max_(x) → RPN: x max{1}"""
+        expr = max_(var("x"))
+        assert len(expr.elements) == 2
+        assert expr.elements[-1].value == "max"
+        assert expr.elements[-1].args == 1
+
+    def test_max_two_args(self):
+        """max_(3, 7) → RPN: 3 7 max{2}"""
+        expr = max_(num(3), num(7))
+        assert len(expr.elements) == 3
+        assert expr.elements[-1].value == "max"
+        assert expr.elements[-1].args == 2
+
+    def test_min_two_args(self):
+        """min_(3, 7) → RPN: 3 7 min{2}"""
+        expr = min_(num(3), num(7))
+        assert len(expr.elements) == 3
+        assert expr.elements[-1].value == "min"
+        assert expr.elements[-1].args == 2
+
+    def test_max_three_args(self):
+        """max_(1, 2, 3) → RPN: 1 2 3 max{3}"""
+        expr = max_(num(1), num(2), num(3))
+        assert len(expr.elements) == 4
+        assert expr.elements[-1].args == 3
+
+
+class TestCoerce:
+    """Test the public coerce function."""
+
+    def test_coerce_expr(self):
+        x = var("x")
+        assert coerce(x) is x
+
+    def test_coerce_int(self):
+        expr = coerce(42)
+        assert len(expr.elements) == 1
+        assert expr.elements[0].value == "42"
+
+    def test_coerce_float(self):
+        expr = coerce(3.14)
+        assert expr.elements[0].value == "3.14"
+
+    def test_coerce_str(self):
+        expr = coerce("x")
+        assert expr.elements[0].value == "x"
+        assert expr.elements[0].type == "operand"
+
+    def test_coerce_invalid_type(self):
+        import pytest
+        with pytest.raises(TypeError, match="Cannot coerce"):
+            coerce([1, 2, 3])

@@ -1,14 +1,12 @@
 """Units system for SMath expressions."""
 
-from __future__ import annotations
-
-from ..expression.builder import Expr, _coerce
+from ..expression.builder import Expr, ExprLike, coerce
 from ..expression.elements import operator, operand, unit_operand
 
 
-def with_unit(value, unit_name: str) -> Expr:
+def with_unit(value: ExprLike, unit_name: str) -> Expr:
     """Attach a unit to a value: ``with_unit(5, 'm')`` → ``5 * m[unit]``."""
-    val = _coerce(value)
+    val = coerce(value)
     return Expr(val._elements + [unit_operand(unit_name), operator("*", 2)])
 
 
@@ -27,7 +25,7 @@ def power_unit(unit_name: str, exp: int) -> Expr:
     return Expr([unit_operand(unit_name), operand(str(exp)), operator("^", 2)])
 
 
-def compound_unit(numerator: list, denominator: list = None) -> Expr:
+def compound_unit(numerator: list[str], denominator: list[str] | None = None) -> Expr:
     """Build a compound unit expression.
 
     ``compound_unit(['kN'], ['m'])`` → ``kN / m``
@@ -54,13 +52,13 @@ def compound_unit(numerator: list, denominator: list = None) -> Expr:
 
 
 def value_with_compound_unit(
-    value, numerator: list, denominator: list = None
+    value: ExprLike, numerator: list[str], denominator: list[str] | None = None
 ) -> Expr:
     """Attach a compound unit to a value.
 
     ``value_with_compound_unit(4, ['kN'], ['m'])`` → ``4 * kN/m``
     """
-    val = _coerce(value)
+    val = coerce(value)
     cu = compound_unit(numerator, denominator)
     return Expr(val._elements + cu._elements + [operator("*", 2)])
 

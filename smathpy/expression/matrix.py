@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-
-from .builder import Expr, _coerce, call
+from .builder import Expr, ExprLike, coerce, call
 from .elements import Element, function, operand
 
 
-def mat(rows_data: List[List[Union[Expr, int, float, str]]]) -> Expr:
+def mat(rows_data: list[list[ExprLike]]) -> Expr:
     """Build a matrix expression from a 2D list.
 
     ``mat([[1, 2], [3, 4]])`` → 1×2 matrix RPN with mat(6) = 4 data + 2 dims.
@@ -28,7 +26,7 @@ def mat(rows_data: List[List[Union[Expr, int, float, str]]]) -> Expr:
     elems: list = []
     for row in rows_data:
         for cell in row:
-            elems.extend(_coerce(cell)._elements)
+            elems.extend(coerce(cell)._elements)
 
     # Push rows and cols counts, then mat function
     # args = (num_data_elements pushed as individual stack values) + 2
@@ -40,62 +38,72 @@ def mat(rows_data: List[List[Union[Expr, int, float, str]]]) -> Expr:
     return Expr(elems)
 
 
-def el(matrix: Union[Expr, str], *indices: Union[Expr, int, float, str]) -> Expr:
+def el(matrix: Expr | str, *indices: ExprLike) -> Expr:
     """Element access: el(M, i) or el(M, i, j)."""
     return call("el", matrix, *indices)
 
 
-def rows(matrix: Union[Expr, str]) -> Expr:
+def rows(matrix: Expr | str) -> Expr:
+    """Number of rows in a matrix."""
     return call("rows", matrix)
 
 
-def cols(matrix: Union[Expr, str]) -> Expr:
+def cols(matrix: Expr | str) -> Expr:
+    """Number of columns in a matrix."""
     return call("cols", matrix)
 
 
-def row(matrix: Union[Expr, str], index: Union[Expr, int, float, str]) -> Expr:
+def row(matrix: Expr | str, index: ExprLike) -> Expr:
+    """Extract row i from a matrix."""
     return call("row", matrix, index)
 
 
-def col(matrix: Union[Expr, str], index: Union[Expr, int, float, str]) -> Expr:
+def col(matrix: Expr | str, index: ExprLike) -> Expr:
+    """Extract column j from a matrix."""
     return call("col", matrix, index)
 
 
-def transpose(matrix: Union[Expr, str]) -> Expr:
+def transpose(matrix: Expr | str) -> Expr:
+    """Matrix transpose."""
     return call("transpose", matrix)
 
 
-def det(matrix: Union[Expr, str]) -> Expr:
+def det(matrix: Expr | str) -> Expr:
+    """Matrix determinant."""
     return call("det", matrix)
 
 
-def tr(matrix: Union[Expr, str]) -> Expr:
+def tr(matrix: Expr | str) -> Expr:
     """Matrix trace."""
     return call("tr", matrix)
 
 
-def identity(n: Union[Expr, int, float, str]) -> Expr:
+def identity(n: ExprLike) -> Expr:
+    """Identity matrix of size n."""
     return call("identity", n)
 
 
-def augment(a: Union[Expr, str], b: Union[Expr, str]) -> Expr:
+def augment(a: Expr | str, b: Expr | str) -> Expr:
     """Horizontally append matrices."""
     return call("augment", a, b)
 
 
-def stack(*matrices: Union[Expr, str]) -> Expr:
+def stack(*matrices: Expr | str) -> Expr:
     """Vertically stack matrices."""
     return call("stack", *matrices)
 
 
-def csort(matrix: Union[Expr, str], col_idx: Union[Expr, int, float, str]) -> Expr:
+def csort(matrix: Expr | str, col_idx: ExprLike) -> Expr:
+    """Sort matrix by column col_idx."""
     return call("csort", matrix, col_idx)
 
 
-def polyroots(coefficients: Union[Expr, str]) -> Expr:
+def polyroots(coefficients: Expr | str) -> Expr:
+    """Polynomial roots from coefficient vector."""
     return call("polyroots", coefficients)
 
 
-def cinterp(data: Union[Expr, str], col_x: Union[Expr, int, float, str],
-            col_y: Union[Expr, int, float, str]) -> Expr:
+def cinterp(data: Expr | str, col_x: ExprLike,
+            col_y: ExprLike) -> Expr:
+    """Cubic spline interpolation."""
     return call("cinterp", data, col_x, col_y)

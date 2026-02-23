@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Union
+from typing import Any
 
 from ..constants import COLOR_BLACK, COLOR_WHITE, FONT_DEFAULT
-from ..expression.builder import Expr, assign, evaluate, _coerce
+from ..expression.builder import Expr, ExprLike, assign, evaluate, coerce
 from ..expression.elements import Element, unit_operand, operator
 from .base import Region
 
@@ -27,45 +27,45 @@ class MathRegion(Region):
         region = MathRegion(expr=evaluate('R.A'), contract_unit='kN')
     """
 
-    expr: Optional[Expr] = None
-    optimize: Optional[str] = "2"
-    decimal_places: Optional[int] = None
+    expr: Expr | None = None
+    optimize: str | None = "2"
+    decimal_places: int | None = None
     significant_digits_mode: bool = False
     trailing_zeros: bool = False
 
     # Result (cached)
-    result_action: Optional[str] = None  # "numeric" or "symbolic"
-    result_elements: Optional[List[Element]] = None
+    result_action: str | None = None  # "numeric" or "symbolic"
+    result_elements: list[Element] | None = None
     show_result: bool = False  # emit <result action="numeric"/> so SMath evaluates inline
 
     # Contract (output unit)
-    contract_unit: Optional[str] = None
-    contract_expr: Optional[Expr] = None  # compound unit Expr, e.g. power_unit('mm', 2)
+    contract_unit: str | None = None
+    contract_expr: Expr | None = None  # compound unit Expr, e.g. power_unit('mm', 2)
 
     # Description (annotation)
-    description: Optional[str] = None
-    description_texts: Optional[Dict[str, str]] = None
+    description: str | None = None
+    description_texts: dict[str, str] | None = None
     description_position: str = "Right"
     description_active: bool = True
 
     @classmethod
-    def assignment(cls, name: str, value, unit_name: str = None, **kwargs) -> MathRegion:
+    def assignment(cls, name: str, value: ExprLike, unit_name: str | None = None, **kwargs: Any) -> MathRegion:
         """Create a math region with a simple assignment.
 
         ``MathRegion.assignment('L', 3, unit_name='m')`` → region with ``L := 3*m``
         """
-        expr = assign(name, _coerce(value))
+        expr = assign(name, coerce(value))
         if unit_name:
             expr = Expr(
                 [expr._elements[0]]  # variable name
-                + _coerce(value)._elements
+                + coerce(value)._elements
                 + [unit_operand(unit_name), operator("*", 2)]
                 + [expr._elements[-1]]  # assignment operator
             )
         return cls(expr=expr, **kwargs)
 
     @classmethod
-    def evaluation(cls, name: str, contract_unit: str = None, **kwargs) -> MathRegion:
+    def evaluation(cls, name: str, contract_unit: str | None = None, **kwargs: Any) -> MathRegion:
         """Create a math region that evaluates and displays a variable.
 
         ``MathRegion.evaluation('R.A', contract_unit='kN')``
@@ -78,7 +78,7 @@ class MathRegion(Region):
         )
 
     @classmethod
-    def expression(cls, expr: Expr, **kwargs) -> MathRegion:
+    def expression(cls, expr: Expr, **kwargs: Any) -> MathRegion:
         """Create a math region from an arbitrary expression."""
         return cls(expr=expr, **kwargs)
 

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Optional
 
 from ..constants import COLOR_BLACK, COLOR_WHITE, FONT_DEFAULT
 
@@ -18,13 +17,13 @@ class Region:
 
     left: int = 9
     top: int = 9
-    width: Optional[int] = None
-    height: Optional[int] = None
+    width: int | None = None
+    height: int | None = None
     color: str = COLOR_BLACK
     bg_color: str = COLOR_WHITE
     font_size: int = FONT_DEFAULT
     border: bool = False
-    id: Optional[int] = None  # Assigned during serialization
+    id: int | None = None  # Assigned during serialization
 
     def xml_attribs(self) -> dict:
         """Return XML attribute dict for the <region> element."""

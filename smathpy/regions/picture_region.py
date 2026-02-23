@@ -5,7 +5,7 @@ from __future__ import annotations
 import base64
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
+from typing import Any
 
 from .base import Region
 
@@ -23,11 +23,11 @@ class PictureRegion(Region):
         pic = PictureRegion(data_base64='iVBORw0KGgo...', format='png')
     """
 
-    data_base64: Optional[str] = None
+    data_base64: str | None = None
     format: str = "png"
 
     @classmethod
-    def from_file(cls, path: str, **kwargs) -> PictureRegion:
+    def from_file(cls, path: str, **kwargs: Any) -> PictureRegion:
         """Create a picture region from an image file."""
         p = Path(path)
         with open(p, "rb") as f:
@@ -40,7 +40,7 @@ class PictureRegion(Region):
         return cls(data_base64=data, format=fmt, **kwargs)
 
     @classmethod
-    def from_bytes(cls, data: bytes, fmt: str = "png", **kwargs) -> PictureRegion:
+    def from_bytes(cls, data: bytes, fmt: str = "png", **kwargs: Any) -> PictureRegion:
         """Create a picture region from raw image bytes."""
         return cls(
             data_base64=base64.b64encode(data).decode("ascii"),

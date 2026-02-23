@@ -2,7 +2,7 @@
 
 from smathpy import Worksheet, TextRegion, MathRegion, var, assign, evaluate, num
 from smathpy.expression import sum_, func_assign, call, mat
-from smathpy.expression.functions import sqrt
+from smathpy.expression.functions import sqrt, max_, min_
 from smathpy.units import with_unit, value_with_compound_unit, compound_unit
 # ── Control structures ─────────────────────────────────────────────────────
 from smathpy.expression import line, range_, for_range
@@ -263,7 +263,7 @@ def main():
     # ρ_min = max([0.25·√(f'c·1MPa)/fy, 1.4MPa/fy])  — §9.6.1.2
     rho_min_1 = num(0.25) * sqrt(f_c * (num(1) @ "MPa")) / f_y
     rho_min_2 = (num(1.4) @ "MPa") / f_y
-    rho_min_expr = call("max", mat([[rho_min_1], [rho_min_2]]))  # vector columna [rho1; rho2]
+    rho_min_expr = max_(mat([[rho_min_1], [rho_min_2]]))  # vector columna [rho1; rho2]
     ws.add(MathRegion(
         expr=assign("ρ_min", rho_min_expr),
         show_result=True,
@@ -392,7 +392,7 @@ def main():
     ws.add(TextRegion.section("13. Separación máxima — ACI 318-19 §9.7.6.2.2"))
 
     # s_max = min([d/2, 600mm]) para Vs ≤ 0.33·√(f'c)·b·d
-    s_max_expr = call("min", mat([[d / num(2)], [num(600) @ "mm"]]))  # vector columna [d/2; 600mm]
+    s_max_expr = min_(mat([[d / num(2)], [num(600) @ "mm"]]))  # vector columna [d/2; 600mm]
     ws.add(MathRegion(
         expr=assign("s_max", s_max_expr),
         show_result=True,

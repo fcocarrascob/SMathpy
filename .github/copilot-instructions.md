@@ -50,10 +50,13 @@ Elements have a `type` (`"operand"`, `"operator"`, `"function"`, `"bracket"`), a
 - **Dataclasses everywhere**: `Region`, `MathRegion`, `TextRegion`, `Settings`, `Element` are all `@dataclass`.
 - **Class methods as factories**: `TextRegion.title()`, `TextRegion.section()`, `MathRegion.assignment()`, `MathRegion.evaluation()` are the idiomatic constructors.
 - **Trailing underscores** for Python keyword clashes: `abs_`, `if_`, `sum_`, `round_`, `max_`, `min_`, `eval_`, `product_`.
-- **`_coerce()` pattern**: Internal helper in `builder.py` converts `int`/`float`/`str` to `Expr` — all public APIs accept `Union[Expr, int, float, str]`.
+- **`coerce()` helper**: Public function in `builder.py` converts `int`/`float`/`str` to `Expr`. All public APIs accept `ExprLike` (type alias for `Expr | int | float | str`).
+- **`ExprLike` type alias**: Defined in `builder.py`, exported from `expression/__init__.py` and `smathpy/__init__.py`. Use it in all function signatures that accept expressions or literals.
 - **Units via `@` operator**: `num(5) @ "m"` attaches a unit using `__matmul__`.
 - **`power_unit(unit, exp)`**: builds a unit-raised-to-power expression (e.g. `power_unit('mm', 2)` for mm²) — preferred over `compound_unit(['mm','mm'], [])` for readability when used as `contract_expr`.
 - **Comparison operators return `Expr`**, not `bool`. Use `.eq()` and `.neq()` for equality (can't safely override `__eq__`/`__ne__`).
+- **Python ≥3.10 required**: Use `X | None` instead of `Optional[X]`, `list[X]` instead of `List[X]`. No `from __future__ import annotations` needed.
+- **mypy enforced**: `disallow_untyped_defs = true` in `pyproject.toml`. All functions must have complete type annotations.
 
 ## Development Workflow
 

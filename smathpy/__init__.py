@@ -16,6 +16,7 @@ from .expression import (
     Expr,
     assign,
     call,
+    coerce,
     const,
     define,
     evaluate,
@@ -36,5 +37,5 @@ __all__ = [
     "Settings", "Metadata", "PageModel", "Assembly",
     # Expression
     "Expr", "var", "num", "const", "string", "unit", "placeholder",
-    "assign", "define", "func_assign", "evaluate", "call",
+    "assign", "define", "func_assign", "evaluate", "call", "coerce",
 ]

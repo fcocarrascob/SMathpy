@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-
-from .builder import Expr, _coerce
+from .builder import Expr, ExprLike, coerce
 from .elements import Element, function, operand, operator
 
 
@@ -12,7 +10,7 @@ from .elements import Element, function, operand, operator
 # line block  —  groups N statements
 # ---------------------------------------------------------------------------
 
-def line(*statements: Union[Expr, int, float, str]) -> Expr:
+def line(*statements: ExprLike) -> Expr:
     """Create a ``line`` block that groups multiple statements.
 
     ``line(stmt1, stmt2, stmt3)`` → RPN: ``stmt1 stmt2 stmt3 3 1 line{5}``
@@ -23,7 +21,7 @@ def line(*statements: Union[Expr, int, float, str]) -> Expr:
     n = len(statements)
     elems: list = []
     for s in statements:
-        elems.extend(_coerce(s)._elements)
+        elems.extend(coerce(s)._elements)
     elems.append(operand(n))
     elems.append(operand(1))
     elems.append(function("line", n + 2))
@@ -34,9 +32,9 @@ def line(*statements: Union[Expr, int, float, str]) -> Expr:
 # range
 # ---------------------------------------------------------------------------
 
-def range_(start: Union[Expr, int, float, str],
-           end: Union[Expr, int, float, str],
-           step: Union[Expr, int, float, str, None] = None) -> Expr:
+def range_(start: ExprLike,
+           end: ExprLike,
+           step: ExprLike | None = None) -> Expr:
     """SMath ``range`` function.
 
     ``range_(1, n)`` → ``range(1, n)``
@@ -44,14 +42,14 @@ def range_(start: Union[Expr, int, float, str],
     """
     if step is None:
         return Expr(
-            _coerce(start)._elements
-            + _coerce(end)._elements
+            coerce(start)._elements
+            + coerce(end)._elements
             + [function("range", 2)]
         )
     return Expr(
-        _coerce(start)._elements
-        + _coerce(end)._elements
-        + _coerce(step)._elements
+        coerce(start)._elements
+        + coerce(end)._elements
+        + coerce(step)._elements
         + [function("range", 3)]
     )
 
@@ -61,8 +59,8 @@ def range_(start: Union[Expr, int, float, str],
 # ---------------------------------------------------------------------------
 
 def for_range(var_name: str,
-              range_expr: Union[Expr, int, float, str],
-              body: Union[Expr, int, float, str]) -> Expr:
+              range_expr: ExprLike,
+              body: ExprLike) -> Expr:
     """``for`` loop with range (3-arg form).
 
     ``for_range('i', range_(1, n), body)``
@@ -70,17 +68,17 @@ def for_range(var_name: str,
     """
     return Expr(
         [operand(var_name)]
-        + _coerce(range_expr)._elements
-        + _coerce(body)._elements
+        + coerce(range_expr)._elements
+        + coerce(body)._elements
         + [function("for", 3)]
     )
 
 
 def for_loop(var_name: str,
-             start: Union[Expr, int, float, str],
-             condition: Union[Expr, int, float, str],
-             increment: Union[Expr, int, float, str],
-             body: Union[Expr, int, float, str]) -> Expr:
+             start: ExprLike,
+             condition: ExprLike,
+             increment: ExprLike,
+             body: ExprLike) -> Expr:
     """``for`` loop with explicit init/condition/increment (4-arg form).
 
     Args:
@@ -95,18 +93,18 @@ def for_loop(var_name: str,
     # Build: init_assign condition increment_assign body for{4}
     init = Expr(
         [operand(var_name)]
-        + _coerce(start)._elements
+        + coerce(start)._elements
         + [operator(":", 2)]
     )
-    cond = _coerce(condition)
+    cond = coerce(condition)
     incr = Expr(
         [operand(var_name)]
-        + _coerce(increment)._elements
+        + coerce(increment)._elements
         + [operator(":", 2)]
     )
     return Expr(
         init._elements + cond._elements + incr._elements
-        + _coerce(body)._elements
+        + coerce(body)._elements
         + [function("for", 4)]
     )
 
@@ -115,12 +113,12 @@ def for_loop(var_name: str,
 # while loop
 # ---------------------------------------------------------------------------
 
-def while_loop(condition: Union[Expr, int, float, str],
-               body: Union[Expr, int, float, str]) -> Expr:
+def while_loop(condition: ExprLike,
+               body: ExprLike) -> Expr:
     """``while(condition, body)`` — args=2."""
     return Expr(
-        _coerce(condition)._elements
-        + _coerce(body)._elements
+        coerce(condition)._elements
+        + coerce(body)._elements
         + [function("while", 2)]
     )
 
@@ -129,14 +127,14 @@ def while_loop(condition: Union[Expr, int, float, str],
 # if conditional
 # ---------------------------------------------------------------------------
 
-def if_(condition: Union[Expr, int, float, str],
-        true_branch: Union[Expr, int, float, str],
-        false_branch: Union[Expr, int, float, str]) -> Expr:
+def if_(condition: ExprLike,
+        true_branch: ExprLike,
+        false_branch: ExprLike) -> Expr:
     """``if(condition, true, false)`` — args=3."""
     return Expr(
-        _coerce(condition)._elements
-        + _coerce(true_branch)._elements
-        + _coerce(false_branch)._elements
+        coerce(condition)._elements
+        + coerce(true_branch)._elements
+        + coerce(false_branch)._elements
         + [function("if", 3)]
     )
 
@@ -145,29 +143,29 @@ def if_(condition: Union[Expr, int, float, str],
 # sum and product
 # ---------------------------------------------------------------------------
 
-def sum_(expr: Union[Expr, int, float, str],
+def sum_(expr: ExprLike,
          var_name: str,
-         start: Union[Expr, int, float, str],
-         end: Union[Expr, int, float, str]) -> Expr:
+         start: ExprLike,
+         end: ExprLike) -> Expr:
     """``sum(expr, var, start, end)`` — args=4."""
     return Expr(
-        _coerce(expr)._elements
+        coerce(expr)._elements
         + [operand(var_name)]
-        + _coerce(start)._elements
-        + _coerce(end)._elements
+        + coerce(start)._elements
+        + coerce(end)._elements
         + [function("sum", 4)]
     )
 
 
-def product_(expr: Union[Expr, int, float, str],
+def product_(expr: ExprLike,
              var_name: str,
-             start: Union[Expr, int, float, str],
-             end: Union[Expr, int, float, str]) -> Expr:
+             start: ExprLike,
+             end: ExprLike) -> Expr:
     """``product(expr, var, start, end)`` — args=4."""
     return Expr(
-        _coerce(expr)._elements
+        coerce(expr)._elements
         + [operand(var_name)]
-        + _coerce(start)._elements
-        + _coerce(end)._elements
+        + coerce(start)._elements
+        + coerce(end)._elements
         + [function("product", 4)]
     )

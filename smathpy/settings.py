@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import uuid
+from typing import Any
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
 
 from .constants import (
     APP_PROGID,
@@ -36,8 +36,8 @@ class PageModel:
     print_areas: bool = True
     simple_equals_only: bool = False
     print_background_images: bool = True
-    view_mode: Optional[str] = None
-    print_grid: Optional[bool] = None
+    view_mode: str | None = None
+    print_grid: bool | None = None
 
     paper_id: str = PAPER_A4["id"]
     orientation: str = "Portrait"
@@ -75,7 +75,7 @@ class Settings:
     revision: int = 1
 
     # Metadata (multiple languages)
-    metadata: List[Metadata] = field(default_factory=lambda: [Metadata()])
+    metadata: list[Metadata] = field(default_factory=lambda: [Metadata()])
 
     # Calculation
     precision: int = 4
@@ -86,12 +86,12 @@ class Settings:
     page_model: PageModel = field(default_factory=PageModel)
 
     # Dependencies
-    assemblies: List[Assembly] = field(default_factory=list)
+    assemblies: list[Assembly] = field(default_factory=list)
 
     # Application info
     dpi: int = 96
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not self.assemblies:
             self.assemblies = [
                 Assembly(
@@ -110,7 +110,7 @@ class Settings:
                 Assembly(name=name, version=info["version"], guid=info["guid"])
             )
 
-    def set_metadata(self, lang: str = "eng", **kwargs) -> None:
+    def set_metadata(self, lang: str = "eng", **kwargs: Any) -> None:
         """Set or update metadata for a specific language."""
         for m in self.metadata:
             if m.lang == lang:

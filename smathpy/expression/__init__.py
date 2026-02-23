@@ -2,8 +2,10 @@
 
 from .builder import (
     Expr,
+    ExprLike,
     assign,
     call,
+    coerce,
     const,
     define,
     evaluate,
@@ -79,8 +81,8 @@ from .matrix import (
 
 __all__ = [
     # builder
-    "Expr", "var", "num", "const", "string", "unit", "placeholder",
-    "assign", "define", "func_assign", "evaluate", "call",
+    "Expr", "ExprLike", "var", "num", "const", "string", "unit", "placeholder",
+    "assign", "define", "func_assign", "evaluate", "call", "coerce",
     # elements
     "Element", "operand", "operator", "function", "bracket",
     "unit_operand", "string_operand",

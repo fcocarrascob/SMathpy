@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Union
 
 from ..constants import COLOR_BLACK, COLOR_WHITE
 from ..expression.builder import Expr
@@ -23,7 +22,7 @@ class PlotRegion(Region):
         )
     """
 
-    inputs: List[Expr] = field(default_factory=list)
+    inputs: list[Expr] = field(default_factory=list)
     plot_type: str = "2d"
     render: str = "lines"
     grid: bool = True
@@ -37,7 +36,7 @@ class PlotRegion(Region):
     transpose_x: int = 0
     transpose_y: int = 0
     transpose_z: int = 0
-    animate: Optional[str] = None
+    animate: str | None = None
     show_input_data: bool = True
 
     def plot_xml_attribs(self) -> dict:

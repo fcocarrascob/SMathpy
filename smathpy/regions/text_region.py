@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Union
+from typing import Any
 
 from ..constants import COLOR_BLACK, COLOR_BLUE, COLOR_WHITE, FONT_DEFAULT, FONT_TITLE
 from .base import Region
@@ -31,12 +31,12 @@ class TextRegion(Region):
         )
     """
 
-    text: Optional[str] = None
-    texts: Optional[Dict[str, str]] = None
+    text: str | None = None
+    texts: dict[str, str] | None = None
     bold: bool = False
     lang: str = "eng"
 
-    def get_texts(self) -> Dict[str, str]:
+    def get_texts(self) -> dict[str, str]:
         """Return the multilingual text dict."""
         if self.texts:
             return self.texts
@@ -45,7 +45,7 @@ class TextRegion(Region):
         return {}
 
     @classmethod
-    def title(cls, text: str, lang: str = "eng", **kwargs) -> TextRegion:
+    def title(cls, text: str, lang: str = "eng", **kwargs: Any) -> TextRegion:
         """Create a title text region (bold, blue, larger font)."""
         return cls(
             text=text,
@@ -57,7 +57,7 @@ class TextRegion(Region):
         )
 
     @classmethod
-    def section(cls, text: str, lang: str = "eng", **kwargs) -> TextRegion:
+    def section(cls, text: str, lang: str = "eng", **kwargs: Any) -> TextRegion:
         """Create a section divider (bordered, gray background)."""
         return cls(
             text=text,

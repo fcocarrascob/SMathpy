@@ -256,8 +256,8 @@ ws.add(MathRegion.expression(assign("v.ceil",  ceil(num(3.2)))))
 ws.add(MathRegion.expression(assign("v.floor", floor(num(3.8)))))
 ws.add(MathRegion.expression(assign("v.round", round_(num(3.456)))))
 ws.add(MathRegion.expression(assign("v.mod",   mod(num(17), num(5)))))
-ws.add(MathRegion.expression(assign("v.max",   call("max", num(3), num(7)))))
-ws.add(MathRegion.expression(assign("v.min",   call("min", num(3), num(7)))))
+ws.add(MathRegion.expression(assign("v.max",   max_(num(3), num(7)))))
+ws.add(MathRegion.expression(assign("v.min",   min_(num(3), num(7)))))
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -580,7 +580,7 @@ ws.add(MathRegion.expression(assign("ev", eval_(x + y))))
 
 # call — generic function call
 ws.add(MathRegion.expression(assign("c.abs", call("abs", num(-99)))))
-ws.add(MathRegion.expression(assign("c.max", call("max", num(3), num(7)))))
+ws.add(MathRegion.expression(assign("c.max", max_(num(3), num(7)))))
 
 # grouped — explicit bracketing
 ws.add(MathRegion.expression(

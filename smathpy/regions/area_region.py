@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List
 
 from ..constants import COLOR_BLACK, COLOR_WHITE
 from .base import Region
@@ -23,12 +22,12 @@ class AreaRegion(Region):
     """
 
     collapsed: bool = False
-    children: List[Region] = field(default_factory=list)
+    children: list[Region] = field(default_factory=list)
 
     # Areas only have id, top, color, bgColor (no left/width/height)
     left: int = 0
-    width: int = None
-    height: int = None
+    width: int | None = None
+    height: int | None = None
 
     def add(self, region: Region) -> Region:
         """Add a child region to this collapsible area."""

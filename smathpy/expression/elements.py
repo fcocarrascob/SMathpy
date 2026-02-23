@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Optional
 
 
 @dataclass
@@ -12,9 +11,9 @@ class Element:
 
     type: str
     value: str
-    args: Optional[int] = None
-    style: Optional[str] = None
-    preserve: Optional[bool] = None
+    args: int | None = None
+    style: str | None = None
+    preserve: bool | None = None
 
     def to_xml_attribs(self) -> dict:
         """Return the XML attributes dict for this element."""
@@ -28,7 +27,7 @@ class Element:
         return attribs
 
 
-def operand(value, style: Optional[str] = None) -> Element:
+def operand(value: str | int | float, style: str | None = None) -> Element:
     """Create an operand element (variable, number, constant)."""
     return Element(type="operand", value=str(value), style=style)
 
@@ -48,7 +47,7 @@ def operator(symbol: str, args: int) -> Element:
     return Element(type="operator", value=symbol, args=args)
 
 
-def function(name: str, args: int, preserve: Optional[bool] = None) -> Element:
+def function(name: str, args: int, preserve: bool | None = None) -> Element:
     """Create a function element.
 
     If *preserve* is None, it is auto-detected from the built-in catalog.
